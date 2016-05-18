@@ -25,6 +25,7 @@ import javax.swing.*;
  * @author dieguischa
  */
 public class creacionTorneo extends JFrame implements ItemListener,ActionListener,Runnable{
+    CrearEquipo crear; 
     servicios serv= new servicios();
     dao dao= new dao();
     Torneo t1;
@@ -84,9 +85,11 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
             botonB.setPreferredSize(preferredSize);
             botonC.setPreferredSize(preferredSize);
             labels.add(equipo);
+            text.setEditable(false);
             textF.add(text);
             botones.add(botonB);
             botones.add(botonC);
+            
         }
         nombre.add(nombreTorneo);
         nombre.add(nombreT);
@@ -115,8 +118,8 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
         }
         for (int i = 1; i <= 10; i++) {
             if(e.getActionCommand().equals("c"+i)){
-             Runnable crearEquipo= new CrearEquipo();
-             crearEquipo.run();
+             CrearEquipo crearEquipo= new CrearEquipo(this, i);
+             
          }
         }
         if(e.getActionCommand().equals("Continuar")){
@@ -135,6 +138,7 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
 
     @Override
     public void run() {
+        
         continuar.addActionListener(this);
         frame.setLayout(new BorderLayout());
         frame.add(numeroEquipos(), BorderLayout.NORTH);
@@ -167,6 +171,8 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
         
     }
 
-    
+     public void setRuta(String ruta, int numero){
+        textfields.get(numero).setText(ruta);
+    }
     
 }

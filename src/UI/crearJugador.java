@@ -22,6 +22,8 @@ import javax.swing.*;
  */
 public class crearJugador extends JFrame implements Runnable, ActionListener{
     Jugador j1;
+    CrearEquipo crear; 
+    int numeroTextF;
     JFrame frame= new JFrame();
     JButton continuar= new JButton("Aceptar");
     JButton atras= new JButton("Cancelar");
@@ -35,7 +37,10 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
     JTextField nombreT= new JTextField();
     JTextField apellidoT= new JTextField();; 
     JTextField numeroT= new JTextField();;
-    public crearJugador(){
+    public crearJugador(CrearEquipo crear, int num){
+       this.crear=crear;
+       this.numeroTextF= num;
+       this.run();
        
     }
     public JPanel informacion(){
@@ -71,6 +76,7 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
         JLabel vacia= new JLabel("");
         JLabel vaciaB= new JLabel("");
         JLabel vaciaC= new JLabel("");
+        
         JPanel boton= new JPanel(new GridLayout(4, 1));
         boton.add(vacia);
         boton.add(vaciaB);
@@ -102,6 +108,9 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
                 try{
                      Jugador j1= new Jugador(nombreT.getText(), apellidoT.getText(), Integer.parseInt(numeroT.getText()), RutaFotoT.getText());
                      serv.guardarJugador(j1);
+                     String nombreArchivo=nombreT.getText()+apellidoT.getText()+".txt";
+                     String ret= nombreArchivo.replaceAll(" ","");
+                     crear.setRuta(ret, this.numeroTextF);
                      frame.dispose();
                      
                 }catch (NullPointerException exc){

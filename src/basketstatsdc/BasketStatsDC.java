@@ -26,7 +26,7 @@ public class BasketStatsDC {
        Runnable creacionTorneo= new creacionTorneo();
        Runnable ventanaPartido= new ventanaPartido();
        
-       Thread thread1= new Thread(ventanaPartido);
+       Thread thread1= new Thread(VentanaInicio);
        
        thread1.start();
        

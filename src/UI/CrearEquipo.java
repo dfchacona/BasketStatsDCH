@@ -32,6 +32,8 @@ import javax.swing.JFileChooser;
  */
 public class CrearEquipo extends JFrame implements ActionListener, Runnable, ItemListener{
     Equipo e1; 
+    creacionTorneo crear; 
+    int numeroTextF;
     dao dao= new dao();
     JFileChooser file=new JFileChooser();
     JTextField nombreT= new JTextField();
@@ -47,8 +49,11 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
     Icon iconoB= new ImageIcon("add-page.png");
     servicios serv= new servicios();
     
-    public CrearEquipo(){
-        
+    public CrearEquipo(creacionTorneo crear, int num){
+       this.crear=crear;
+       this.numeroTextF= num;
+       this.run();
+       
     }
     
      public JPanel numeroJugadores(){
@@ -89,6 +94,7 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
             botonB.setPreferredSize(preferredSize);
             botonC.setPreferredSize(preferredSize);
             labels.add(equipo);
+            text.setEditable(false);
             textF.add(text);
             botones.add(botonB);
             botones.add(botonC);
@@ -114,8 +120,8 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
         }
         for (int i = 1; i <= 10; i++) {
             if(e.getActionCommand().equals("c"+i)){
-             Runnable crearJugador= new crearJugador();  
-             crearJugador.run();
+             crearJugador crearJugador= new crearJugador(this, i);  
+            
              
              
              
@@ -130,6 +136,9 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
                 try {
                     serv.crearJugador(e1, dao.cargarJugador(t1.getText()));
                     serv.guardarEquipo(e1);
+                    String nombreArchivo=nombreT.getText()+".txt";
+                    String ret= nombreArchivo.replaceAll(" ","");
+                    crear.setRuta(ret, this.numeroTextF);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CrearEquipo.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -144,10 +153,12 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
 
     @Override
     public void run() {
+        
         continuar.addActionListener(this);
         frame.setLayout(new BorderLayout());
         frame.add(numeroJugadores(), BorderLayout.NORTH);
         frame.setSize(500, 250);
+       
         opciones.add(atras);
         opciones.add(continuar);
         continuar.addActionListener(this);
@@ -170,6 +181,9 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
             
         }
         }
+    }
+    public void setRuta(String ruta, int numero){
+        textfields.get(numero).setText(ruta);
     }
 }
 
