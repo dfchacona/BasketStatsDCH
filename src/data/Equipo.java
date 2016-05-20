@@ -65,5 +65,89 @@ public class Equipo {
         return output;
     }
     
-    
+    public int getPuntos(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getPuntos();
+        }
+        return puntos;
+    }
+    public int getAsistencias(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getAsistencias();
+        }
+        return puntos;
+    }
+    public int getRebotesD(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getRebotesDefensivos();
+        }
+        return puntos;
+    }
+    public int getRebotesO(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getRebotesOfensivos();
+        }
+        return puntos;
+    }
+    public int getTapones(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getTapones();
+        }
+        return puntos;
+    }
+    public int getRobos(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getRobos();
+        }
+        return puntos;
+    }
+    public int getFaltas(){
+        int puntos=0;
+        for(Jugador j1:this.jugadores.values()){
+            puntos+=j1.getFaltas();
+        }
+        return puntos;
+    }
+    public String getTC(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosDoble();
+            aciertos+=j1.getDoblesConvertidos();
+            
+        }
+        porcentaje=aciertos*100/intentos;
+        return aciertos+"/"+intentos+"---"+porcentaje+"%";
+    }
+     public String get3TC(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosTriple();
+            aciertos+=j1.getTriplesConvertidos();
+            
+        }
+        porcentaje=aciertos*100/intentos;
+        return aciertos+"/"+intentos+"---"+porcentaje+"%";
+    }
+      public String getTL(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosLibre();
+            aciertos+=j1.getLibresConvertidos();
+            
+        }
+        porcentaje=aciertos*100/intentos;
+        return aciertos+"/"+intentos+"---"+porcentaje+"%";
+    }
 }

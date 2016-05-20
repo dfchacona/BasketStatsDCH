@@ -215,6 +215,10 @@ public class Jugador {
         return porcentajeTL;
     }
 
+    public String getRutaFoto() {
+        return rutaFoto;
+    }
+    
     @Override
     public String toString() {
         return "\nNombre: " + nombre +" "+apellido+ 

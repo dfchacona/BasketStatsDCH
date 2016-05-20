@@ -21,10 +21,13 @@ public class BasketStatsDC {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
+        dao dao= new dao();
        servicios serv= new servicios();
        Runnable VentanaInicio= new VentanaInicio();
        Runnable creacionTorneo= new creacionTorneo();
-       Runnable ventanaPartido= new ventanaPartido();
+       Equipo e1= dao.cargarEquipo("Heat.txt");
+       Equipo e2= dao.cargarEquipo("Heat.txt");
+       Runnable ventanaPartido= new ventanaPartido(e1, e2);
        
        Thread thread1= new Thread(VentanaInicio);
        
