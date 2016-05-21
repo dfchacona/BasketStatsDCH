@@ -25,13 +25,11 @@ public class BasketStatsDC {
        servicios serv= new servicios();
        Runnable VentanaInicio= new VentanaInicio();
        Runnable creacionTorneo= new creacionTorneo();
-       Equipo e1= dao.cargarEquipo("Heat.txt");
-       Equipo e2= dao.cargarEquipo("Heat.txt");
-       Runnable ventanaPartido= new ventanaPartido(e1, e2);
+       Torneo t1= dao.cargarTorneo("Integracion.txt");
+       t1.setPartidos();
+       for(Partido p1: t1.getPartidos())
+            System.out.println(p1.toString());
        
-       Thread thread1= new Thread(VentanaInicio);
-       
-       thread1.start();
        
        
     }
