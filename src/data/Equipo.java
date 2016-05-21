@@ -50,11 +50,7 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo: " + "Nombre=" + nombre + 
-               "\nJugadores:\n" + jugadores + 
-               "\nPartidosJugados=" + partidosJugados +
-               "\nPartidosGanados=" + partidosGanados + 
-               "\nPartidosPerdidos=" + this.getPartidosPerdidos() + '}';
+        return "Equipo: " + "Nombre=" + nombre;
     }
 
     public String toOutput(){
@@ -123,7 +119,11 @@ public class Equipo {
             aciertos+=j1.getDoblesConvertidos();
             
         }
-        porcentaje=aciertos*100/intentos;
+        try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return "0/0---0.0%";
+        }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
      public String get3TC(){
@@ -135,7 +135,12 @@ public class Equipo {
             aciertos+=j1.getTriplesConvertidos();
             
         }
-        porcentaje=aciertos*100/intentos;
+        try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return "0/0---0.0%";
+        }
+       
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
       public String getTL(){
@@ -147,7 +152,11 @@ public class Equipo {
             aciertos+=j1.getLibresConvertidos();
             
         }
-        porcentaje=aciertos*100/intentos;
+          try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return "0/0---0.0%";
+        }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
 }

@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.Arrays;
+
 /**
  *
  * @author dieguischa
@@ -29,6 +31,11 @@ public class Partido {
         marcador[0]= marcadorA;
         marcador[1]= marcadorB;
         this.marcador = marcador;
+    }
+
+    @Override
+    public String toString() {
+        return "Partido{" + "equipos=" + Arrays.toString(equipos) + '}';
     }
      
      

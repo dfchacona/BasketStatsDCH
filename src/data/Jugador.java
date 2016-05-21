@@ -39,7 +39,7 @@ public class Jugador {
         this.rutaFoto = rutaFoto;
         this.puntos = puntos;
         this.asistencias = asistencias;
-        this.rebotes = rebotes;
+        this.rebotesDefensivos = rebotes-rebotesOfensivos;
         this.rebotesOfensivos = rebotesOfensivos;
         this.tapones = tapones;
         this.robos = robos;
@@ -63,9 +63,7 @@ public class Jugador {
     }
     
     
-    public void anotar(int puntos){
-        this.puntos=+puntos;
-    }
+   
     public void fallar2(){
         this.intentosDoble++;
     }
@@ -77,30 +75,28 @@ public class Jugador {
         this.intentosTriple++;
     }
     public void anotar2(){
-        anotar(2);
+        this.puntos+=2;
         this.intentosDoble++;
         this.doblesConvertidos++;
     }
     public void anotarLibre(){
-        anotar(1);
+        this.puntos+=1;
         this.intentosLibre++;
         this.libresConvertidos++;
     }
     public void anotar3(){
-        anotar(3);
+        this.puntos+=3;
         this.intentosDoble++;
         this.intentosTriple++;
         this.doblesConvertidos++;
         this.triplesConvertidos++;
     }
-    public void anotar(){
-        this.puntos=+puntos;
-    }
+  
     public void asistir(){
         this.asistencias++;
     }
-     public void rebotar(){
-        this.rebotes++;
+     public void rebotarDefensivo(){
+        this.rebotesDefensivos++;
     }
     public void rebotarOfensivo(){
         this.rebotesOfensivos++;
@@ -124,11 +120,11 @@ public class Jugador {
     }
 
     public int getRebotes() {
-        return rebotes;
+        return this.rebotesOfensivos+this.rebotesDefensivos;
     }
 
     public int getRebotesDefensivos() {
-        return this.rebotes-this.rebotesOfensivos;
+        return this.rebotesDefensivos;
     }
 
     public int getRebotesOfensivos() {
@@ -214,7 +210,15 @@ public class Jugador {
         }
         return porcentajeTL;
     }
-
+    public String getTC(){
+    return this.doblesConvertidos+"/"+this.intentosDoble+"---"+this.getPorcentajeTC()+"%";
+    }
+    public String get3TC(){
+    return this.triplesConvertidos+"/"+this.intentosTriple+"---"+this.getPorcentajeTriples()+"%";
+    }
+    public String getTL(){
+    return this.libresConvertidos+"/"+this.intentosLibre+"---"+this.getPorcentajeTL()+"%";
+    }
     public String getRutaFoto() {
         return rutaFoto;
     }
@@ -225,7 +229,7 @@ public class Jugador {
                "\nNumero: " + numero+
                "\nPuntos=" + puntos + 
                "\nAsistencias=" + asistencias + 
-               "\nRebotes Defensivos=" + this.getRebotesDefensivos() + 
+               "\nRebotes Defensivos=" + rebotesDefensivos+ 
                "\nRebotes Ofensivos=" + rebotesOfensivos +
                "\nTapones=" + tapones +
                "\nRobos=" + robos + 
@@ -238,7 +242,7 @@ public class Jugador {
                "\nPorcentaje TL=" + this.getPorcentajeTL() + "%\n";
     }
     public String toOutput(){
-        return ""+nombre+","+apellido+","+numero+","+rutaFoto+","+puntos+","+asistencias+","+rebotes+","+rebotesOfensivos+","+tapones+","+robos+","+faltas+","+doblesConvertidos+","+intentosDoble+","
+        return ""+nombre+","+apellido+","+numero+","+rutaFoto+","+puntos+","+asistencias+","+this.getRebotes()+","+rebotesOfensivos+","+tapones+","+robos+","+faltas+","+doblesConvertidos+","+intentosDoble+","
                 +triplesConvertidos+","+intentosTriple+","+libresConvertidos+","+intentosLibre+",";
     }
 }
