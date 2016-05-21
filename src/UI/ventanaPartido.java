@@ -45,7 +45,8 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
 	JPanel panelChoice= new JPanel(); 
         
         Choice a = new Choice();
-	 a.addItem("Todo el equipo");
+        a.setName(""+e1.getNombre());
+	 a.addItem(e1.getNombre());
 	 for(Jugador j1: e1.getJugadores().values()){
 			a.addItem(""+j1.getNumero());
 			
@@ -77,16 +78,17 @@ public JPanel PanelOpciones(){
         JPanel panelM= new JPanel(new GridLayout(e1.getJugadores().size(), 1));
         for (Jugador j1: e1.getJugadores().values()) {
             JPanel panel= new JPanel(new BorderLayout());
-            ImageIcon im= new ImageIcon("folder.png");
+            ImageIcon im;
             System.out.println(j1.getRutaFoto());
             if(j1.getRutaFoto().equals("")){
-            
-               im= new ImageIcon("folder.png");  
+               im= new ImageIcon("desconocido.png");  
             }else{
                im= new ImageIcon(j1.getRutaFoto());
             }
             JLabel foto= new JLabel(im);
             JButton boton= new JButton(""+j1.getNumero());
+            boton.setActionCommand(e1.getNombre()+j1.getNumero());
+            boton.addActionListener(this);
             JLabel nombre= new JLabel(""+j1.getApellido());
             panel.add(nombre, BorderLayout.NORTH);
             panel.add(foto, BorderLayout.CENTER);
@@ -115,22 +117,22 @@ public JPanel PanelOpciones(){
 	   panelStA.add(Pts);
 	   Pts.setEditable(false);
            textfields.put(e1.getNombre()+"Pts", Pts);
-	 JTextField FG= new JTextField("0/0---0%");
+	 JTextField FG= new JTextField("0/0---0.0%");
 	    panelStA.add(marca2);
 	    panelStA.add(FG);
 	    FG.setEditable(false);
             textfields.put(e1.getNombre()+"FG", FG);
-	 JTextField TresFG= new JTextField("0/0---0%");
+	 JTextField TresFG= new JTextField("0/0---0.0%");
 	    panelStA.add(marca3);
 	    panelStA.add(TresFG);
 	    TresFG.setEditable(false);
             textfields.put(e1.getNombre()+"3FG", TresFG);
-	  JTextField TL= new JTextField("0/0---0%");
+	  JTextField TL= new JTextField("0/0---0.0%");
 	    panelStA.add(marca10);
 	    panelStA.add(TL);
 	    TL.setEditable(false);
             textfields.put(e1.getNombre()+"TL", TL);
-	   JTextField Ast= new JTextField("0");
+	   JTextField Ast= new JTextField("0.0");
 	    panelStA.add(marca11);
 	    panelStA.add(Ast);
             textfields.put(e1.getNombre()+"Ast", Ast);
@@ -196,22 +198,78 @@ public JPanel PanelOpciones(){
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(Jugador j1: e1.getJugadores().values()){
+            if (e.getActionCommand().equals(e1.getNombre()+j1.getNumero())){
+                Runnable AccionJugador=new AccionJugador(j1, this);
+                AccionJugador.run();
+            }
+        }
+        for(Jugador j1: e2.getJugadores().values()){
+            if (e.getActionCommand().equals(e2.getNombre()+j1.getNumero())){
+                System.out.println(""+j1.getNombre());
+                Runnable AccionJugador=new AccionJugador(j1, this);
+                AccionJugador.run();
+            }
+        }
     }
 
     @Override
     public void itemStateChanged(ItemEvent ie) {
        for(Choice a: choice.values()){
            for(Jugador j1: e1.getJugadores().values()){
-               if(a.getSelectedItem().equals(""+j1.getNumero())){
-                textfields.get(e1.getNombre()+"Pts").setText("3"+j1.getPuntos());
+               if(a.getSelectedItem().equals(""+j1.getNumero())&&a.getName().equals(e1.getNombre())){
+                textfields.get(e1.getNombre()+"Pts").setText(""+j1.getPuntos());
+                textfields.get(e1.getNombre()+"FG").setText(""+j1.getTC());
+                textfields.get(e1.getNombre()+"3FG").setText(""+j1.get3TC());
+                textfields.get(e1.getNombre()+"TL").setText(""+j1.getTL());
+                textfields.get(e1.getNombre()+"Ast").setText(""+j1.getAsistencias());
+                textfields.get(e1.getNombre()+"Re").setText(""+j1.getRebotesDefensivos());
+                textfields.get(e1.getNombre()+"ReO").setText(""+j1.getRebotesOfensivos());
+                textfields.get(e1.getNombre()+"Ta").setText(""+j1.getTapones());
+                textfields.get(e1.getNombre()+"Ro").setText(""+j1.getRobos());
+                textfields.get(e1.getNombre()+"Flt").setText(""+j1.getFaltas());
+                
                }
            }
            for(Jugador j1: e2.getJugadores().values()){
-               if(a.getSelectedItem().equals(""+j1.getNumero())){
-                textfields.get(e2.getNombre()+"Pts").setText("3"+j1.getPuntos());
+               if(a.getSelectedItem().equals(""+j1.getNumero())&&a.getName().equals(e2.getNombre())){
+                
+                textfields.get(e2.getNombre()+"Pts").setText(""+j1.getPuntos());
+                textfields.get(e2.getNombre()+"FG").setText(""+j1.getTC());
+                textfields.get(e2.getNombre()+"3FG").setText(""+j1.get3TC());
+                textfields.get(e2.getNombre()+"TL").setText(""+j1.getTL());
+                textfields.get(e2.getNombre()+"Ast").setText(""+j1.getAsistencias());
+                textfields.get(e2.getNombre()+"Re").setText(""+j1.getRebotesDefensivos());
+                textfields.get(e2.getNombre()+"ReO").setText(""+j1.getRebotesOfensivos());
+                textfields.get(e2.getNombre()+"Ta").setText(""+j1.getTapones());
+                textfields.get(e2.getNombre()+"Ro").setText(""+j1.getRobos());
+                textfields.get(e2.getNombre()+"Flt").setText(""+j1.getFaltas());
                }
            }
+           if(a.getSelectedItem().equals(e2.getNombre())){
+                textfields.get(e2.getNombre()+"Pts").setText(""+e2.getPuntos());
+                textfields.get(e2.getNombre()+"FG").setText(""+e2.getTC());
+                textfields.get(e2.getNombre()+"3FG").setText(""+e2.get3TC());
+                textfields.get(e2.getNombre()+"TL").setText(""+e2.getTL());
+                textfields.get(e2.getNombre()+"Ast").setText(""+e2.getAsistencias());
+                textfields.get(e2.getNombre()+"Re").setText(""+e2.getRebotesD());
+                textfields.get(e2.getNombre()+"ReO").setText(""+e2.getRebotesO());
+                textfields.get(e2.getNombre()+"Ta").setText(""+e2.getTapones());
+                textfields.get(e2.getNombre()+"Ro").setText(""+e2.getRobos());
+                textfields.get(e2.getNombre()+"Flt").setText(""+e2.getFaltas());
+               }
+           if(a.getSelectedItem().equals(e1.getNombre())){
+                textfields.get(e1.getNombre()+"Pts").setText(""+e1.getPuntos());
+                textfields.get(e1.getNombre()+"FG").setText(""+e1.getTC());
+                textfields.get(e1.getNombre()+"3FG").setText(""+e1.get3TC());
+                textfields.get(e1.getNombre()+"TL").setText(""+e1.getTL());
+                textfields.get(e1.getNombre()+"Ast").setText(""+e1.getAsistencias());
+                textfields.get(e1.getNombre()+"Re").setText(""+e1.getRebotesD());
+                textfields.get(e1.getNombre()+"ReO").setText(""+e1.getRebotesO());
+                textfields.get(e1.getNombre()+"Ta").setText(""+e1.getTapones());
+                textfields.get(e1.getNombre()+"Ro").setText(""+e1.getRobos());
+                textfields.get(e1.getNombre()+"Flt").setText(""+e1.getFaltas());
+               }
        }
     }
 
