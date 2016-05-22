@@ -1,1 +1,1 @@
-Chris ,Bosh,1,C:\Users\dfchacona\Documents\NetBeansProjects\BasketStatsDCH\Bosh.jpg,0,0,0,0,0,0,0,0,0,0,0,0,0,
+Chris,Bosh,1,/Users/dieguischa/Documents/BasketStatsDC/Bosh.jpg,6,0,0,0,0,0,0,2,4,2,3,0,0,0,

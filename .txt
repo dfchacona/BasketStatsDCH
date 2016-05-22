@@ -1,1 +1,1 @@
-,Jugador,XXXX,XXXX,Jugador,ZZZZZZ,ZZZZZZ,Jugador,YYYY,YYYY,Jugador,Klay,Thompson,Jugador,Stephen,Curry,
+,Jugador,Chris,Bosh,Jugador,Dwayne,Wade,Jugador,XXXX,XXXX,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,

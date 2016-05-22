@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package dao;
+import Exception.NumeroJugadorException;
 import data.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +15,7 @@ import java.util.*;
  */
 public class dao {
 
-    public Equipo cargarEquipo(String archivo) throws FileNotFoundException {
+    public Equipo cargarEquipo(String archivo) throws FileNotFoundException{
         
         Scanner sc = new Scanner(new File(archivo));
             sc.useDelimiter(",");
@@ -56,8 +57,8 @@ public class dao {
         int intentosTriple= sc.nextInt();
         int libresAnotados= sc.nextInt();
         int intentosLibre= sc.nextInt();
-        
-        Jugador j1= new Jugador(rutaFoto, puntos, asistencias, rebotes, rebotesOfensivos, tapones, robos, faltas, intentosDoble, intentosTriple, intentosLibre, doblesAnotados, triplesAnotados, libresAnotados, nombre, apellido, numero);
+        int partidosJugados= sc.nextInt();
+        Jugador j1= new Jugador(rutaFoto, puntos, asistencias, rebotes, rebotesOfensivos, rebotesOfensivos, tapones, robos, faltas, intentosDoble, intentosTriple, intentosLibre, doblesAnotados, triplesAnotados, libresAnotados, nombre, apellido, numero, partidosJugados);
         return j1;
     }
     
