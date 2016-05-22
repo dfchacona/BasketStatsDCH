@@ -139,6 +139,7 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
             frame.dispose();
         }
         if (e.getActionCommand().equals("Aceptar")){
+            
             Equipo e1= new Equipo(nombreT.getText());
             for (JTextField t1 : textfields.values()) {
                     String nombreArchivo=nombreT.getText()+".txt";

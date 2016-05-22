@@ -28,6 +28,7 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
     Equipo e2;
     Partido p1; 
     Torneo t1;
+    ventanaTorneo padre;
     int puntosPreviosA;
     int puntosPreviosB;
     int cuarto;
@@ -44,7 +45,7 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
     HashMap <String, JTextField> textfields;
     HashMap <String, Choice> choice; 
     servicios serv= new servicios();
-    public ventanaPartido(Equipo e1, Equipo e2, Torneo t1){
+    public ventanaPartido(Equipo e1, Equipo e2, Torneo t1, ventanaTorneo padre){
         this.e1 = e1;
         this.e2 = e2;
         this.t1 = t1; 
@@ -54,6 +55,7 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
         this.cuarto=1;
         this.puntosPreviosA=0;
         this.puntosPreviosB=0;
+        this.padre=padre;
     }
      public ventanaPartido(Equipo e1, Equipo e2){
         this.e1 = e1;
@@ -335,10 +337,25 @@ public JPanel PanelOpciones(){
             frame.dispose();
         }
         if(e.getActionCommand().equals("salirG")){
+            if(e1.getPuntos()!=e2.getPuntos()){
+                
+            if(e2.getPuntos()>e1.getPuntos()){
+                e2.jugarPartido();
+                e2.ganarPartido();
+                e1.jugarPartido();
+            }else if (e1.getPuntos()>e2.getPuntos()){
+                e1.jugarPartido();
+                e1.ganarPartido();
+                e2.jugarPartido();
+            }
+            
             try {
+                
                 p1.setMarcador(e1.getPuntos(), e2.getPuntos());
                 t1.anadirPartido(p1, e1.getNombre(), e2.getNombre());
                 serv.guardarPartido(p1);
+                padre.textfields.get(e1.getNombre()+e2.getNombre()).setText(""+e1.getPuntos());
+                padre.textfields.get(e2.getNombre()+e1.getNombre()).setText(""+e2.getPuntos());
                 for(Jugador j1 : e1.getJugadores().values()){
                     j1.clear();
                 }
@@ -346,7 +363,7 @@ public JPanel PanelOpciones(){
                     j1.clear();
                 }
                 serv.guardarTorneo(t1);
-                
+                frame.dispose();
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -357,8 +374,12 @@ public JPanel PanelOpciones(){
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                frame.dispose();
             }
-            frame.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Tiempo Extra");
+            }
+            
         }
     }
 
