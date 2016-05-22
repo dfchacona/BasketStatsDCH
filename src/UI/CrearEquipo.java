@@ -33,6 +33,7 @@ import javax.swing.JFileChooser;
 public class CrearEquipo extends JFrame implements ActionListener, Runnable, ItemListener{
     Equipo e1; 
     creacionTorneo crear; 
+    partidoAmistoso amistoso;
     int numeroTextF;
     dao dao= new dao();
     JFileChooser file=new JFileChooser();
@@ -51,6 +52,12 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
     
     public CrearEquipo(creacionTorneo crear, int num){
        this.crear=crear;
+       this.numeroTextF= num;
+       this.run();
+       
+    }
+    public CrearEquipo(partidoAmistoso amistoso, int num){
+       this.amistoso=amistoso;
        this.numeroTextF= num;
        this.run();
        
@@ -133,14 +140,18 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
         if (e.getActionCommand().equals("Aceptar")){
             Equipo e1= new Equipo(nombreT.getText());
             for (JTextField t1 : textfields.values()) {
+                    String nombreArchivo=nombreT.getText()+".txt";
+                    String ret= nombreArchivo.replaceAll(" ","");
                 try {
                     serv.crearJugador(e1, dao.cargarJugador(t1.getText()));
                     serv.guardarEquipo(e1);
-                    String nombreArchivo=nombreT.getText()+".txt";
-                    String ret= nombreArchivo.replaceAll(" ","");
+                    
                     crear.setRuta(ret, this.numeroTextF);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CrearEquipo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 catch (NullPointerException ex1) {
+                    amistoso.setRuta(ret, this.numeroTextF);
                 }
             }
             frame.dispose();
@@ -158,10 +169,8 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
         frame.setLayout(new BorderLayout());
         frame.add(numeroJugadores(), BorderLayout.NORTH);
         frame.setSize(500, 250);
-       
         opciones.add(atras);
         opciones.add(continuar);
-        continuar.addActionListener(this);
         atras.addActionListener(this);
         frame.add(opciones, BorderLayout.SOUTH);
         frame.add(espaciosEquipos(5), BorderLayout.CENTER);

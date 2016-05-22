@@ -23,6 +23,7 @@ import javax.swing.*;
 public class crearJugador extends JFrame implements Runnable, ActionListener{
     Jugador j1;
     CrearEquipo crear; 
+    partidoAmistoso amistoso;
     int numeroTextF;
     JFrame frame= new JFrame();
     JButton continuar= new JButton("Aceptar");
@@ -39,6 +40,12 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
     JTextField numeroT= new JTextField();;
     public crearJugador(CrearEquipo crear, int num){
        this.crear=crear;
+       this.numeroTextF= num;
+       this.run();
+       
+    }
+    public crearJugador(partidoAmistoso amistoso, int num){
+       this.amistoso=amistoso;
        this.numeroTextF= num;
        this.run();
        
@@ -110,7 +117,11 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
                      serv.guardarJugador(j1);
                      String nombreArchivo=nombreT.getText()+apellidoT.getText()+".txt";
                      String ret= nombreArchivo.replaceAll(" ","");
+                     try{
                      crear.setRuta(ret, this.numeroTextF);
+                     }catch(NullPointerException exc){
+                         amistoso.setRuta(ret, this.numeroTextF);
+                     }
                      frame.dispose();
                      
                 }catch (NullPointerException exc){

@@ -25,10 +25,12 @@ public class VentanaInicio extends JFrame implements ActionListener, Runnable{
     
     JRadioButton opcionTorneoNuevo= new JRadioButton("Crear Torneo nuevo");
     JRadioButton opcionTorneoExistente= new JRadioButton("Cargar Torneo Existente");
+    JRadioButton opcionPartidoAmistoso= new JRadioButton("Partido Amistoso");
     JFrame frame= new JFrame();
     
     Runnable crear= new creacionTorneo();
     Runnable cargar= new cargarTorneo();
+    Runnable amistoso= new partidoAmistoso();
     JButton continuar= new JButton("Continuar");
     public VentanaInicio(){
     
@@ -40,12 +42,15 @@ public class VentanaInicio extends JFrame implements ActionListener, Runnable{
         ButtonGroup group = new ButtonGroup();
         group.add(opcionTorneoExistente);
         group.add(opcionTorneoNuevo);
+        group.add(opcionPartidoAmistoso);
         opcionTorneoExistente.addActionListener(this);
         opcionTorneoNuevo.addActionListener(this);
+        opcionPartidoAmistoso.addActionListener(this);
         continuar.addActionListener(this);
         JPanel panel=new JPanel(new GridLayout(0, 1));
         panel.add(opcionTorneoExistente);
         panel.add(opcionTorneoNuevo);
+        panel.add(opcionPartidoAmistoso);
         panel.add(continuar);
         frame.add(panel);
         
@@ -64,6 +69,10 @@ public class VentanaInicio extends JFrame implements ActionListener, Runnable{
        if(opcionTorneoNuevo.isSelected()&&e.getActionCommand().equals("Continuar")){
            frame.dispose();
            crear.run();
+       }
+       if(opcionPartidoAmistoso.isSelected()&&e.getActionCommand().equals("Continuar")){
+           frame.dispose();
+           amistoso.run();
        }
       }
 

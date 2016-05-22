@@ -127,11 +127,19 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
             for (JTextField tf : textfields.values()) {
                 try {
                     serv.crearEquipo(t1, dao.cargarEquipo(tf.getText()));
-                    serv.guardarTorneo(t1);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CrearEquipo.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } 
+            }
+            t1.setPartidos();
+            try {
+                serv.guardarTorneo(t1);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(creacionTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         Runnable ventanaTorneo= new ventanaTorneo(t1);
+         ventanaTorneo.run();
+         frame.dispose();
         } 
         System.out.println(e.getActionCommand());
     }
@@ -146,7 +154,7 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         opciones.add(atras);
         opciones.add(continuar);
-        continuar.addActionListener(this);
+        
         atras.addActionListener(this);
         frame.add(opciones, BorderLayout.SOUTH);
         frame.add(espaciosEquipos(2), BorderLayout.CENTER);

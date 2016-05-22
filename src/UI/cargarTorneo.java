@@ -22,6 +22,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * @author dieguischa
  */
 public class cargarTorneo implements Runnable, ActionListener{
+    Torneo t1;
     JFrame frame= new JFrame();
     JButton continuar= new JButton("Continuar");
     JButton atras= new JButton("Atras");
@@ -78,11 +79,14 @@ public class cargarTorneo implements Runnable, ActionListener{
         }
         if(e.getActionCommand().equals("Continuar")){
             try {
-                Torneo t1= serv.cargarTorneo(text.getText());
+                t1= serv.cargarTorneo(text.getText());
                 System.out.println(t1.toString());
             } catch (FileNotFoundException ex) {
                 
             }
+         Runnable ventanaTorneo= new ventanaTorneo(t1);
+         ventanaTorneo.run();
+         frame.dispose();
         }
     }
     
