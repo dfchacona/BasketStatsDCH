@@ -1,1 +1,1 @@
-Heat,Jugador,Chris,Bosh,Jugador,Dwayne,Wade,Jugador,XXXX,XXXX,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,
+Heat,0,0,Jugador,Chris,Bosh,Jugador,Dwayne,Wade,Jugador,XXXX,XXXX,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,

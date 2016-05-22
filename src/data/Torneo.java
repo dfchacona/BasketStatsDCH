@@ -5,6 +5,7 @@
  */
 package data;
 
+import Exception.NumeroJugadorException;
 import java.util.*;
 
 /**
@@ -75,5 +76,42 @@ public class Torneo {
     }
     public void guardarPartido(Partido p1, String e1, String e2){
         partidos.replace(e1+e2,p1);
+    }
+    public Jugador getLiderPuntos() throws NumeroJugadorException{
+        Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
+        liderPuntos.setPuntosTot(0);
+        for(Equipo e1: this.equipos.values()){
+            for(Jugador j1: e1.getJugadores().values()){
+                if (j1.getPuntosTot()>liderPuntos.getPuntosTot()){
+                    liderPuntos=j1; 
+                }
+            }
+        }
+        return liderPuntos; 
+    }
+    public Jugador getLiderAsistencias() throws NumeroJugadorException{
+        Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
+        liderPuntos.setAsistenciasTot(0);
+        for(Equipo e1: this.equipos.values()){
+            for(Jugador j1: e1.getJugadores().values()){
+                if (j1.getAsistenciasTot()>liderPuntos.getAsistenciasTot()){
+                    liderPuntos=j1; 
+                }
+            }
+        }
+        return liderPuntos; 
+    }
+    public Jugador getLiderFG() throws NumeroJugadorException{
+        Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
+        liderPuntos.setDoblesConvertidosTot(0);
+        liderPuntos.setIntentosDobleTot(0);
+        for(Equipo e1: this.equipos.values()){
+            for(Jugador j1: e1.getJugadores().values()){
+                if (j1.getPorcentajeTCTot()>liderPuntos.getPorcentajeTCTot()){
+                    liderPuntos=j1; 
+                }
+            }
+        }
+        return liderPuntos; 
     }
 }

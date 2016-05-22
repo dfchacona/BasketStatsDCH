@@ -1,1 +1,1 @@
-Cavaliers,Jugador,Kevin,Love,Jugador,XXXX,XXXX,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,Jugador,LeBron,James,
+Cavaliers,0,0,Jugador,Kevin,Love,Jugador,XXXX,XXXX,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,Jugador,LeBron,James,

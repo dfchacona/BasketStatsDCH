@@ -1,4 +1,4 @@
-Prueba,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Heat,Cavaliers,0,0,Equipo: Nombre:
+Prueba,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Partido,Heat,Cavaliers,0,2,Equipo: Heat
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 1
@@ -6,6 +6,7 @@ Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
+
 Nombre: Chris Bosh
 Numero: 1
 Puntos=0
@@ -86,7 +87,7 @@ Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
-Equipo: Nombre:
+Equipo: Cavaliers
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 0
@@ -94,6 +95,7 @@ Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
+
 Nombre: Kevin Love
 Numero: 0
 Puntos=0
@@ -173,32 +175,17 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
-,Heat,Celtics,0,0,Equipo: Nombre:
+,Partido,Cavaliers,Celtics,3,0,Equipo: Cavaliers
 Puntos Totales: 0
 Asistencias Totales: 0
-Rebotes Totales: 1
+Rebotes Totales: 0
 Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
-Nombre: Chris Bosh
-Numero: 1
-Puntos=0
-Asistencias=0
-Rebotes Defensivos=0
-Rebotes Ofensivos=0
-Tapones=0
-Robos=0
-Faltas=0
-Tiros de campo=0/0
-Tiros de 3=0/0
-TirosLibres=0/0
-Porcentaje TC=0.0%
-Porcentaje Triples=0.0%
-Porcentaje TL=0.0%
 
-Nombre: Dwayne Wade
-Numero: 3
+Nombre: Kevin Love
+Numero: 0
 Puntos=0
 Asistencias=0
 Rebotes Defensivos=0
@@ -261,7 +248,23 @@ Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
-Equipo: Nombre:
+Nombre: LeBron James
+Numero: 23
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Equipo: Celtics
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 0
@@ -269,6 +272,7 @@ Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
+
 Nombre: Avery Bradley
 Numero: 0
 Puntos=0
@@ -348,16 +352,33 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
-,Cavaliers,Celtics,0,0,Equipo: Nombre:
+,Partido,Heat,Celtics,2,0,Equipo: Heat
 Puntos Totales: 0
 Asistencias Totales: 0
-Rebotes Totales: 0
+Rebotes Totales: 1
 Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
-Nombre: Kevin Love
-Numero: 0
+
+Nombre: Chris Bosh
+Numero: 1
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: Dwayne Wade
+Numero: 3
 Puntos=0
 Asistencias=0
 Rebotes Defensivos=0
@@ -420,23 +441,7 @@ Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
-Nombre: LeBron James
-Numero: 23
-Puntos=0
-Asistencias=0
-Rebotes Defensivos=0
-Rebotes Ofensivos=0
-Tapones=0
-Robos=0
-Faltas=0
-Tiros de campo=0/0
-Tiros de 3=0/0
-TirosLibres=0/0
-Porcentaje TC=0.0%
-Porcentaje Triples=0.0%
-Porcentaje TL=0.0%
-
-Equipo: Nombre:
+Equipo: Celtics
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 0
@@ -444,6 +449,7 @@ Rebotes Ofensivos Totales: 0
 Robos Totales: 0
 Tapones Totales: 0
 Faltas Totales: 0
+
 Nombre: Avery Bradley
 Numero: 0
 Puntos=0

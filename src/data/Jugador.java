@@ -425,6 +425,7 @@ public class Jugador {
     public String getTCTot(){
     return this.doblesConvertidosTot+"/"+this.intentosDobleTot+"---"+this.getPorcentajeTCTot()+"%";
     }
+    
     public String get3TCTot(){
     return this.triplesConvertidosTot+"/"+this.intentosTripleTot+"---"+this.getPorcentajeTriplesTot()+"%";
     }

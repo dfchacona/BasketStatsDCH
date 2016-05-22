@@ -21,18 +21,20 @@ public class Equipo {
         HashMap <Integer, Jugador> jugadores= new HashMap(); 
         this.nombre=nombre;
         this.jugadores=jugadores;
+        this.partidosJugados=0;
+        this.partidosGanados=0;
     }
 
     public HashMap<Integer, Jugador> getJugadores() {
         return jugadores;
     }
 
-    public int getPartidosJugados() {
-        return partidosJugados;
+    public void ganarPartido() {
+       this.partidosGanados++;
     }
 
-    public int getPartidosGanados() {
-        return partidosGanados;
+    public void jugarPartido() {
+        this.partidosJugados++;
     }
 
     public int getPartidosPerdidos() {
@@ -48,6 +50,14 @@ public class Equipo {
         return nombre;
     }
 
+    public void setPartidosJugados(int partidosJugados) {
+        this.partidosJugados = partidosJugados;
+    }
+
+    public void setPartidosGanados(int partidosGanados) {
+        this.partidosGanados = partidosGanados;
+    }
+ 
     @Override
     public String toString() {
         String ret="Equipo: " + this.getNombre()
@@ -68,9 +78,11 @@ public class Equipo {
 
     public String toOutput(){
         String output=""+nombre+",";
+        output=output+this.partidosJugados+","+this.partidosGanados+",";
         for(Jugador j1: jugadores.values()){
             output=output+"Jugador,"+j1.getNombre()+","+j1.getApellido()+",";
         }
+        
         return output;
     }
     
@@ -179,6 +191,15 @@ public class Equipo {
         }
         return puntos;
     }
+
+    public int getPartidosJugados() {
+        return partidosJugados;
+    }
+
+    public int getPartidosGanados() {
+        return partidosGanados;
+    }
+       
     public int getAsistenciasTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){

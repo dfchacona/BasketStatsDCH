@@ -20,7 +20,11 @@ public class dao {
         Scanner sc = new Scanner(new File(archivo));
             sc.useDelimiter(",");
             String nombre= sc.next().trim();
-            Equipo e1= new Equipo(nombre);   
+            Equipo e1= new Equipo(nombre); 
+            int PJ= sc.nextInt();
+            int PG= sc.nextInt();
+            e1.setPartidosGanados(PG);
+            e1.setPartidosJugados(PJ);
             while(sc.hasNext()){
             String type = sc.next().trim();
            
@@ -29,11 +33,8 @@ public class dao {
                String apellidoJ= sc.next();
                Jugador j1= cargarJugador(nombreJ+apellidoJ+".txt");
                e1.anadirJugador(j1);
-               
-            
-            
-        
             }
+            
             }
         return e1;
     }
