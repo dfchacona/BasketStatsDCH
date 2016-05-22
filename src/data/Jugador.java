@@ -5,6 +5,7 @@
  */
 package data;
 
+import Exception.NumeroJugadorException;
 import java.awt.*;
 
 /**
@@ -13,20 +14,34 @@ import java.awt.*;
  */
 public class Jugador {
     private String rutaFoto;
-    private int puntos; 
-    private int asistencias; 
-    private int rebotes;
-    private int rebotesDefensivos;
-    private int rebotesOfensivos;
-    private int tapones; 
-    private int robos; 
-    private int faltas; 
-    private int intentosDoble; 
-    private int intentosTriple; 
-    private int intentosLibre; 
-    private int doblesConvertidos; 
-    private int triplesConvertidos; 
-    private int libresConvertidos; 
+    private int puntos=0; 
+    private int asistencias=0; 
+    private int rebotes=0;
+    private int rebotesDefensivos=0;
+    private int rebotesOfensivos=0;
+    private int tapones=0; 
+    private int robos=0; 
+    private int faltas=0; 
+    private int intentosDoble=0; 
+    private int intentosTriple=0; 
+    private int intentosLibre=0; 
+    private int doblesConvertidos=0; 
+    private int triplesConvertidos=0; 
+    private int libresConvertidos=0;
+    private int puntosTot; 
+    private int asistenciasTot; 
+    private int rebotesTot;
+    private int rebotesDefensivosTot;
+    private int rebotesOfensivosTot;
+    private int taponesTot; 
+    private int robosTot; 
+    private int faltasTot; 
+    private int intentosDobleTot; 
+    private int intentosTripleTot; 
+    private int intentosLibreTot; 
+    private int doblesConvertidosTot; 
+    private int triplesConvertidosTot; 
+    private int libresConvertidosTot;
     private String nombre; 
     private String apellido; 
     private int numero; 
@@ -34,8 +49,34 @@ public class Jugador {
     private double porcentajeTC;
     private double porcentajeTriples;
     private double porcentajeTL;
+    private double porcentajeTCTot;
+    private double porcentajeTriplesTot;
+    private double porcentajeTLTot;
 
-    public Jugador(String rutaFoto, int puntos, int asistencias, int rebotes, int rebotesOfensivos, int tapones, int robos, int faltas, int intentosDoble, int intentosTriple, int intentosLibre, int doblesConvertidos, int triplesConvertidos, int libresConvertidos, String nombre, String apellido, int numero) {
+    public Jugador(String rutaFoto, int puntosTot, int asistenciasTot, int rebotesTot, int rebotesDefensivosTot, int rebotesOfensivosTot, int taponesTot, int robosTot, int faltasTot, int intentosDobleTot, int intentosTripleTot, int intentosLibreTot, int doblesConvertidosTot, int triplesConvertidosTot, int libresConvertidosTot, String nombre, String apellido, int numero, int partidosJugados) {
+        this.rutaFoto = rutaFoto;
+        this.puntosTot = puntosTot;
+        this.asistenciasTot = asistenciasTot;
+        this.rebotesTot = rebotesTot;
+        this.rebotesDefensivosTot = rebotesDefensivosTot;
+        this.rebotesOfensivosTot = rebotesOfensivosTot;
+        this.taponesTot = taponesTot;
+        this.robosTot = robosTot;
+        this.faltasTot = faltasTot;
+        this.intentosDobleTot = intentosDobleTot;
+        this.intentosTripleTot = intentosTripleTot;
+        this.intentosLibreTot = intentosLibreTot;
+        this.doblesConvertidosTot = doblesConvertidosTot;
+        this.triplesConvertidosTot = triplesConvertidosTot;
+        this.libresConvertidosTot = libresConvertidosTot;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        
+        this.numero = numero;
+        this.partidosJugados = partidosJugados;
+    }
+
+    public Jugador(String rutaFoto, int puntos, int asistencias, int rebotes, int rebotesOfensivos, int tapones, int robos, int faltas, int intentosDoble, int intentosTriple, int intentosLibre, int doblesConvertidos, int triplesConvertidos, int libresConvertidos, String nombre, String apellido, int numero)  {
         this.rutaFoto = rutaFoto;
         this.puntos = puntos;
         this.asistencias = asistencias;
@@ -52,12 +93,31 @@ public class Jugador {
         this.libresConvertidos = libresConvertidos;
         this.nombre = nombre;
         this.apellido = apellido;
+        
         this.numero = numero;
     }
-
-    public Jugador(String nombre, String apellido, int numero, String rutaFoto) {
+    public void clear(){
+    this.puntos=0; 
+    this.asistencias=0; 
+    this.rebotes=0;
+    this.rebotesDefensivos=0;
+    this.rebotesOfensivos=0;
+    this.tapones=0; 
+    this.robos=0; 
+    this.faltas=0; 
+    this.intentosDoble=0; 
+    this.intentosTriple=0; 
+    this.intentosLibre=0; 
+    this.doblesConvertidos=0; 
+    this.triplesConvertidos=0; 
+    this.libresConvertidos=0;
+    }
+    public Jugador(String nombre, String apellido, int numero, String rutaFoto) throws NumeroJugadorException {
         this.nombre = nombre;
         this.apellido = apellido;
+        if(numero>99){
+            throw new NumeroJugadorException ("Numero Invalido");
+        }
         this.numero = numero;
         this.rutaFoto= rutaFoto; 
     }
@@ -108,6 +168,7 @@ public class Jugador {
         this.robos++;
     }
        public void cometerfalta(){
+           
        this.faltas++;
     }
 
@@ -222,7 +283,154 @@ public class Jugador {
     public String getRutaFoto() {
         return rutaFoto;
     }
-    
+
+    public int getPuntosTot() {
+        return puntosTot;
+    }
+
+    public void setPuntosTot(int puntosTot) {
+        this.puntosTot+=puntosTot;
+    }
+
+    public int getAsistenciasTot() {
+        return asistenciasTot;
+    }
+
+    public void setAsistenciasTot(int asistenciasTot) {
+        this.asistenciasTot+=asistenciasTot;
+    }
+
+    public int getRebotesTot() {
+        return rebotesTot;
+    }
+
+    public void setRebotesTot(int rebotesTot) {
+        this.rebotesTot+=rebotesDefensivosTot+ rebotesOfensivosTot;
+    }
+
+    public int getRebotesDefensivosTot() {
+        return rebotesDefensivosTot;
+    }
+
+    public void setRebotesDefensivosTot(int rebotesDefensivosTot) {
+        this.rebotesDefensivosTot+=rebotesDefensivosTot;
+    }
+
+    public int getRebotesOfensivosTot() {
+        return rebotesOfensivosTot;
+    }
+
+    public void setRebotesOfensivosTot(int rebotesOfensivosTot) {
+        this.rebotesOfensivosTot+=rebotesOfensivosTot;
+    }
+
+    public int getTaponesTot() {
+        return taponesTot;
+    }
+
+    public void setTaponesTot(int taponesTot) {
+        this.taponesTot+=taponesTot;
+    }
+
+    public int getRobosTot() {
+        return robosTot;
+    }
+
+    public void setRobosTot(int robosTot) {
+        this.robosTot+=robosTot;
+    }
+
+    public int getFaltasTot() {
+        return faltasTot;
+    }
+
+    public void setFaltasTot(int faltasTot) {
+        this.faltasTot+=faltasTot;
+    }
+
+    public int getIntentosDobleTot() {
+        return intentosDobleTot;
+    }
+
+    public void setIntentosDobleTot(int intentosDobleTot) {
+        this.intentosDobleTot+=intentosDobleTot;
+    }
+
+    public int getIntentosTripleTot() {
+        return intentosTripleTot;
+    }
+
+    public void setIntentosTripleTot(int intentosTripleTot) {
+        this.intentosTripleTot+=intentosTripleTot;
+    }
+
+    public int getIntentosLibreTot() {
+        return intentosLibreTot;
+    }
+
+    public void setIntentosLibreTot(int intentosLibreTot) {
+        this.intentosLibreTot+=intentosLibreTot;
+    }
+
+    public int getDoblesConvertidosTot() {
+        return doblesConvertidosTot;
+    }
+
+    public void setDoblesConvertidosTot(int doblesConvertidosTot) {
+        this.doblesConvertidosTot+=doblesConvertidosTot;
+    }
+
+    public int getTriplesConvertidosTot() {
+        return triplesConvertidosTot;
+    }
+
+    public void setTriplesConvertidosTot(int triplesConvertidosTot) {
+        this.triplesConvertidosTot+=triplesConvertidosTot;
+    }
+
+    public int getLibresConvertidosTot() {
+        return libresConvertidosTot;
+    }
+
+    public void setLibresConvertidosTot(int libresConvertidosTot) {
+        this.libresConvertidosTot+=libresConvertidosTot;
+    }
+        public double getPorcentajeTCTot() {
+        
+        try {
+            porcentajeTC=this.doblesConvertidosTot*100/this.intentosDobleTot;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentajeTC;
+    }
+
+    public double getPorcentajeTriplesTot() {
+        try {
+            porcentajeTriples=this.triplesConvertidosTot*100/this.intentosTripleTot;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentajeTriples;
+    }
+
+    public double getPorcentajeTLTot() {
+       try {
+            porcentajeTL=this.libresConvertidosTot*100/this.intentosLibreTot;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentajeTL;
+    }
+    public String getTCTot(){
+    return this.doblesConvertidosTot+"/"+this.intentosDobleTot+"---"+this.getPorcentajeTCTot()+"%";
+    }
+    public String get3TCTot(){
+    return this.triplesConvertidosTot+"/"+this.intentosTripleTot+"---"+this.getPorcentajeTriplesTot()+"%";
+    }
+    public String getTLTot(){
+    return this.libresConvertidosTot+"/"+this.intentosLibreTot+"---"+this.getPorcentajeTLTot()+"%";
+    }
     @Override
     public String toString() {
         return "\nNombre: " + nombre +" "+apellido+ 
@@ -242,7 +450,7 @@ public class Jugador {
                "\nPorcentaje TL=" + this.getPorcentajeTL() + "%\n";
     }
     public String toOutput(){
-        return ""+nombre+","+apellido+","+numero+","+rutaFoto+","+puntos+","+asistencias+","+this.getRebotes()+","+rebotesOfensivos+","+tapones+","+robos+","+faltas+","+doblesConvertidos+","+intentosDoble+","
-                +triplesConvertidos+","+intentosTriple+","+libresConvertidos+","+intentosLibre+",";
+        return ""+nombre+","+apellido+","+numero+","+rutaFoto+","+puntosTot+","+asistenciasTot+","+this.getRebotesTot()+","+rebotesOfensivosTot+","+taponesTot+","+robosTot+","+faltasTot+","+doblesConvertidosTot+","+intentosDobleTot+","
+                +triplesConvertidosTot+","+intentosTripleTot+","+libresConvertidosTot+","+intentosLibreTot+","+partidosJugados+",";
     }
 }
