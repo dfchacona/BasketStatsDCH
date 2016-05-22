@@ -1,0 +1,178 @@
+Partido,Heat,Celtics,6,5,Equipo: Heat
+Puntos Totales: 6
+Asistencias Totales: 0
+Rebotes Totales: 1
+Rebotes Ofensivos Totales: 0
+Robos Totales: 0
+Tapones Totales: 0
+Faltas Totales: 0
+
+Nombre: Chris Bosh
+Numero: 1
+Puntos=6
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=2/2
+Tiros de 3=2/2
+TirosLibres=0/0
+Porcentaje TC=100.0%
+Porcentaje Triples=100.0%
+Porcentaje TL=0.0%
+
+Nombre: Dwayne Wade
+Numero: 3
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: XXXX XXXX
+Numero: 4
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: YYYY YYYY
+Numero: 5
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: ZZZZ ZZZZ
+Numero: 6
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Equipo: Celtics
+Puntos Totales: 5
+Asistencias Totales: 0
+Rebotes Totales: 0
+Rebotes Ofensivos Totales: 0
+Robos Totales: 0
+Tapones Totales: 0
+Faltas Totales: 0
+
+Nombre: Avery Bradley
+Numero: 0
+Puntos=5
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=2/2
+Tiros de 3=1/1
+TirosLibres=0/0
+Porcentaje TC=100.0%
+Porcentaje Triples=100.0%
+Porcentaje TL=0.0%
+
+Nombre: XXXX XXXX
+Numero: 4
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: Marcus Smart
+Numero: 21
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: YYYY YYYY
+Numero: 5
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+
+Nombre: ZZZZ ZZZZ
+Numero: 6
+Puntos=0
+Asistencias=0
+Rebotes Defensivos=0
+Rebotes Ofensivos=0
+Tapones=0
+Robos=0
+Faltas=0
+Tiros de campo=0/0
+Tiros de 3=0/0
+TirosLibres=0/0
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
+Porcentaje TL=0.0%
+,

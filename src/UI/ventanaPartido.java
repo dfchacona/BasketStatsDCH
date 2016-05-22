@@ -26,6 +26,11 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
     JFrame frame= new JFrame();
     Equipo e1; 
     Equipo e2;
+    Partido p1; 
+    Torneo t1;
+    int puntosPreviosA;
+    int puntosPreviosB;
+    int cuarto;
     JLabel marca1;
     JLabel marca2;
     JLabel marca3;
@@ -39,11 +44,26 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
     HashMap <String, JTextField> textfields;
     HashMap <String, Choice> choice; 
     servicios serv= new servicios();
-    public ventanaPartido(Equipo e1, Equipo e2){
+    public ventanaPartido(Equipo e1, Equipo e2, Torneo t1){
         this.e1 = e1;
         this.e2 = e2;
+        this.t1 = t1; 
+        p1= new Partido(e1.getNombre(), e2.getNombre(), t1);
         this.textfields=new <String, JTextField>  HashMap();
         this.choice= new <String, Choice> HashMap();
+        this.cuarto=1;
+        this.puntosPreviosA=0;
+        this.puntosPreviosB=0;
+    }
+     public ventanaPartido(Equipo e1, Equipo e2){
+        this.e1 = e1;
+        this.e2 = e2;
+        p1= new Partido(e1, e2);
+        this.textfields=new <String, JTextField>  HashMap();
+        this.choice= new <String, Choice> HashMap();
+        this.cuarto=1;
+        this.puntosPreviosA=0;
+        this.puntosPreviosB=0;
     }
     
     public JPanel construyePanelChoice(Equipo e1){
@@ -63,16 +83,20 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
 }
 public JPanel PanelOpciones(){
 	    JPanel panelSouth = new JPanel(new FlowLayout());
-		JButton botonFinQ=new JButton ("Fin del Cuarto");
-		botonFinQ.setActionCommand("finQ");
+            JButton botonFinQ=new JButton ("Fin del Cuarto");
+            botonFinQ.setActionCommand("finQ");
 	    botonFinQ.addActionListener(this);
 	    JButton botonMarcadorF=new JButton ("Marcador Final");  
             botonMarcadorF.setActionCommand("marcadorf");
 	    botonMarcadorF.addActionListener(this);
 	    panelSouth.add(botonFinQ);
 	    panelSouth.add(botonMarcadorF);
-		JButton botonSalir=new JButton ("Salir");
-		botonSalir.setActionCommand("salir");
+            JButton botonSalirG=new JButton ("Salir y Guardar");
+            botonSalirG.setActionCommand("salirG");
+	    botonSalirG.addActionListener(this);
+	    panelSouth.add(botonSalirG);
+            JButton botonSalir=new JButton ("Salir");
+            botonSalir.setActionCommand("salir");
 	    botonSalir.addActionListener(this);
 	    panelSouth.add(botonSalir);
 
@@ -113,7 +137,6 @@ public JPanel PanelOpciones(){
 	 marca5 = new JLabel("Rebotes ofensivos"); 
 	 marca6 = new JLabel("Tapones"); 
 	 marca7 = new JLabel("Robos");
-	 
 	 marca9 = new JLabel("Faltas");
 	
 	
@@ -260,7 +283,9 @@ public JPanel PanelOpciones(){
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                j1.clear();
+                
+                
+               
             }
             for(Jugador j1: e2.getJugadores().values()){
                 j1.setPuntosTot(j1.getPuntos());
@@ -279,13 +304,62 @@ public JPanel PanelOpciones(){
                 try {
                     serv.guardarJugador(j1);
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
-                j1.clear();
+                
+            }
+            p1.setMarcador(e1.getPuntos(), e2.getPuntos());
+            marcadorFinal mf= new marcadorFinal(p1);
+           for(Jugador j1: e2.getJugadores().values()){
+            j1.clear();
+        }
+        for(Jugador j1: e1.getJugadores().values()){
+            j1.clear();
+        } 
+            
+        }
+        if(e.getActionCommand().equals("finQ")){
+            try{
+            int puntosCuartoA= e1.getPuntos()-puntosPreviosA;
+            p1.setMarcadorParcialA(puntosCuartoA, cuarto);
+            puntosPreviosA= e1.getPuntos();
+            int puntosCuartoB= e2.getPuntos()-puntosPreviosB;
+            p1.setMarcadorParcialB(puntosCuartoB, cuarto);
+            puntosPreviosB= e2.getPuntos();
+            cuarto++;
+            }catch(ArrayIndexOutOfBoundsException ex){
+                JOptionPane.showMessageDialog(null,"Partido Acabado");
             }
         }
-        
-        
+        if(e.getActionCommand().equals("salir")){
+            frame.dispose();
+        }
+        if(e.getActionCommand().equals("salirG")){
+            try {
+                p1.setMarcador(e1.getPuntos(), e2.getPuntos());
+                t1.anadirPartido(p1, e1.getNombre(), e2.getNombre());
+                serv.guardarPartido(p1);
+                for(Jugador j1 : e1.getJugadores().values()){
+                    j1.clear();
+                }
+                for(Jugador j1 : e2.getJugadores().values()){
+                    j1.clear();
+                }
+                serv.guardarTorneo(t1);
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
+            
+            } catch (NullPointerException ex2) {
+                p1.setMarcador(e1.getPuntos(), e2.getPuntos());
+                try {
+                    serv.guardarPartido(p1);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            frame.dispose();
+        }
     }
 
     @Override
@@ -314,7 +388,7 @@ public JPanel PanelOpciones(){
                     textfields.get(e1.getNombre()+"Flt").setBackground(Color.red);
                     break;
                     default:
-                        break;
+                    break;
                 }
                }
            }
@@ -342,7 +416,7 @@ public JPanel PanelOpciones(){
                     textfields.get(e2.getNombre()+"Flt").setBackground(Color.red);
                     break;
                     default:
-                        break;
+                    break;
                 }
                }
            }

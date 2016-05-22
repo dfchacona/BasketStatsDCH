@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Exception.NumeroJugadorException;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import Servicios.*;
@@ -129,7 +130,9 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
                     serv.crearEquipo(t1, dao.cargarEquipo(tf.getText()));
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CrearEquipo.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (NumeroJugadorException ex) {
+                Logger.getLogger(creacionTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             t1.setPartidos();
             try {

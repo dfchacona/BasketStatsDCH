@@ -73,8 +73,11 @@ public class dao {
                 String nombreEquipoA=sc.next();
                 String nombreEquipoB=sc.next();
                 Partido p1= cargarPartido(nombreEquipoA, nombreEquipoB, t1);
-                t1.anadirPartido(p1);
-                
+                try{
+                t1.anadirPartido(p1,nombreEquipoA,nombreEquipoB);
+                }catch(NullPointerException ex){
+                    
+                }
             }
             if (type.equals("Equipo")){
                String nombreE= sc.next().trim(); 
@@ -88,9 +91,27 @@ public class dao {
         return t1;
     } 
 
-    private Partido cargarPartido(String nombreA, String nombreB, Torneo t1) throws FileNotFoundException {
-       
+    public Partido cargarPartido(String nombreA, String nombreB, Torneo t1) throws FileNotFoundException {
+            Scanner sc;     
+            try{
+            sc = new Scanner(new File(nombreA+nombreB+".txt"));
+            } catch (FileNotFoundException ex){
+                return new Partido(nombreA, nombreB, t1);
+            }
+            sc.useDelimiter(","); 
+            String type= sc.next();
+            String nombreEA= sc.next();
+            String nombreEB= sc.next();
+            int marcadorA=sc.nextInt();
+            int marcadorB=sc.nextInt();
+            String stats="";
+            while (sc.hasNext()){
+                stats=stats+sc.nextLine()+"\n";
+            }
+            
             Partido p1= new Partido(nombreA, nombreB, t1);
+            p1.setMarcador(marcadorA, marcadorB);
+            p1.asignarStats(stats);
             return p1;
             
     }

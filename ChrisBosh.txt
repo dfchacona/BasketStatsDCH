@@ -1,1 +1,1 @@
-Chris,Bosh,1,/Users/dieguischa/Documents/BasketStatsDC/Bosh.jpg,6,0,0,0,0,0,0,2,4,2,3,0,0,0,
+Chris,Bosh,1,/Users/dieguischa/Documents/BasketStatsDC/Bosh.jpg,53,0,0,0,0,0,0,21,24,10,11,1,1,0,

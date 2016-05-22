@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Exception.NumeroJugadorException;
 import Servicios.servicios;
 import dao.dao;
 import java.awt.*;
@@ -152,6 +153,8 @@ public class CrearEquipo extends JFrame implements ActionListener, Runnable, Ite
                 }
                  catch (NullPointerException ex1) {
                     amistoso.setRuta(ret, this.numeroTextF);
+                } catch (NumeroJugadorException ex) {
+                    Logger.getLogger(CrearEquipo.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             frame.dispose();

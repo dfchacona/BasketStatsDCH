@@ -1,10 +1,10 @@
-,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Heat,Cavaliers,0,0,Equipo: Nombre:
-Puntos Totales: 67
+Prueba,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Heat,Cavaliers,0,0,Equipo: Nombre:
+Puntos Totales: 0
 Asistencias Totales: 0
-Rebotes Totales: 2
-Rebotes Ofensivos Totales: 1
+Rebotes Totales: 1
+Rebotes Ofensivos Totales: 0
 Robos Totales: 0
-Tapones Totales: 1
+Tapones Totales: 0
 Faltas Totales: 0
 Nombre: Chris Bosh
 Numero: 1
@@ -85,9 +85,10 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
+
 Equipo: Nombre:
-Puntos Totales: 45
-Asistencias Totales: 2
+Puntos Totales: 0
+Asistencias Totales: 0
 Rebotes Totales: 0
 Rebotes Ofensivos Totales: 0
 Robos Totales: 0
@@ -173,12 +174,12 @@ Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 ,Heat,Celtics,0,0,Equipo: Nombre:
-Puntos Totales: 67
+Puntos Totales: 0
 Asistencias Totales: 0
-Rebotes Totales: 2
-Rebotes Ofensivos Totales: 1
+Rebotes Totales: 1
+Rebotes Ofensivos Totales: 0
 Robos Totales: 0
-Tapones Totales: 1
+Tapones Totales: 0
 Faltas Totales: 0
 Nombre: Chris Bosh
 Numero: 1
@@ -259,6 +260,7 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
+
 Equipo: Nombre:
 Puntos Totales: 0
 Asistencias Totales: 0
@@ -347,8 +349,8 @@ Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 ,Cavaliers,Celtics,0,0,Equipo: Nombre:
-Puntos Totales: 45
-Asistencias Totales: 2
+Puntos Totales: 0
+Asistencias Totales: 0
 Rebotes Totales: 0
 Rebotes Ofensivos Totales: 0
 Robos Totales: 0
@@ -433,6 +435,7 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
+
 Equipo: Nombre:
 Puntos Totales: 0
 Asistencias Totales: 0

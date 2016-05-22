@@ -1,1 +1,1 @@
-Dwayne,Wade,3,/Users/dieguischa/Documents/BasketStatsDC/Wade.jpg,7,0,0,1,0,0,0,3,3,1,1,0,0,0,
+Dwayne,Wade,3,/Users/dieguischa/Documents/BasketStatsDC/Wade.jpg,14,0,0,1,1,0,0,6,6,2,2,0,0,0,

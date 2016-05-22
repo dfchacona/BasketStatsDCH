@@ -50,7 +50,20 @@ public class Equipo {
 
     @Override
     public String toString() {
-        return "Equipo: " + "Nombre=" + nombre;
+        String ret="Equipo: " + this.getNombre()
+                +"\nPuntos Totales: "+ this.getPuntos()
+                +"\nAsistencias Totales: "+this.getAsistencias()
+                +"\nRebotes Totales: "+(this.getRebotesDTot()+this.getRebotesO())
+                +"\nRebotes Ofensivos Totales: "+(this.getRebotesO())
+                +"\nRobos Totales: "+(this.getRobos())
+                +"\nTapones Totales: "+(this.getTapones())
+                +"\nFaltas Totales: "+(this.getFaltas())+"\n";
+                
+        for(Jugador j1: jugadores.values()){
+            ret=ret+j1.toString();
+        }
+        return ret;
+        
     }
 
     public String toOutput(){

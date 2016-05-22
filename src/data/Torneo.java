@@ -14,13 +14,13 @@ import java.util.*;
 public class Torneo {
     private String nombre; 
     private HashMap <String, Equipo> equipos; 
-    private ArrayList <Partido> partidos;
+    private HashMap <String,Partido> partidos;
     private int numEquipos; 
 
     public Torneo(String nombre) {
         this.nombre = nombre;
         this.equipos = new <String, Equipo>  HashMap();
-        this.partidos= new <Partido> ArrayList();
+        this.partidos= new <String,Partido> HashMap();
         this.setPartidos();
         
     }
@@ -43,7 +43,7 @@ public class Torneo {
         for(Equipo e1: equipos.values()){
             output=output+"Equipo,"+e1.getNombre()+",";
         }
-        for(Partido p1: partidos){
+        for(Partido p1: partidos.values()){
             output=output+p1.toOutput();
         }
         return output;
@@ -60,17 +60,20 @@ public class Torneo {
                 copia.remove(e1.getNombre());
                 for (Equipo e2: copia.values()){
                     Partido p1= new Partido(e1.getNombre(), e2.getNombre(), this);
-                    partidos.add(p1);    
+                    partidos.put(e1.getNombre()+e2.getNombre(),p1);    
                 }
                 
         }
         }
     }
 
-    public ArrayList<Partido> getPartidos() {
+    public HashMap<String,Partido> getPartidos() {
         return partidos;
     }
-    public void anadirPartido(Partido p1){
-        partidos.add(p1);
+    public void anadirPartido(Partido p1, String e1, String e2){
+        partidos.put(e1+e2,p1);
+    }
+    public void guardarPartido(Partido p1, String e1, String e2){
+        partidos.replace(e1+e2,p1);
     }
 }
