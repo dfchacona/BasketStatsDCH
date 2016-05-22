@@ -5,13 +5,18 @@
  */
 package UI;
 
+import Exception.JugadorExpulsadoException;
+import Servicios.servicios;
 import data.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -33,7 +38,7 @@ public class ventanaPartido extends JFrame implements ItemListener,ActionListene
     JLabel marca11;
     HashMap <String, JTextField> textfields;
     HashMap <String, Choice> choice; 
-   
+    servicios serv= new servicios();
     public ventanaPartido(Equipo e1, Equipo e2){
         this.e1 = e1;
         this.e2 = e2;
@@ -61,8 +66,8 @@ public JPanel PanelOpciones(){
 		JButton botonFinQ=new JButton ("Fin del Cuarto");
 		botonFinQ.setActionCommand("finQ");
 	    botonFinQ.addActionListener(this);
-	    JButton botonMarcadorF=new JButton ("Marcador Final");
-		botonMarcadorF.setActionCommand("marcadorf");
+	    JButton botonMarcadorF=new JButton ("Marcador Final");  
+            botonMarcadorF.setActionCommand("marcadorf");
 	    botonMarcadorF.addActionListener(this);
 	    panelSouth.add(botonFinQ);
 	    panelSouth.add(botonMarcadorF);
@@ -198,19 +203,89 @@ public JPanel PanelOpciones(){
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         for(Jugador j1: e1.getJugadores().values()){
             if (e.getActionCommand().equals(e1.getNombre()+j1.getNumero())){
-                Runnable AccionJugador=new AccionJugador(j1, this);
-                AccionJugador.run();
+                Runnable AccionJugador=null;
+                try {
+                    AccionJugador = new AccionJugador(j1, this);
+                } catch (JugadorExpulsadoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+                try {
+                    AccionJugador.run();
+                } catch (NullPointerException ex) {
+                    break;
+                }
+                
+                
             }
+            
         }
         for(Jugador j1: e2.getJugadores().values()){
             if (e.getActionCommand().equals(e2.getNombre()+j1.getNumero())){
-                System.out.println(""+j1.getNombre());
-                Runnable AccionJugador=new AccionJugador(j1, this);
-                AccionJugador.run();
+                Runnable AccionJugador=null;
+                try {
+                    AccionJugador = new AccionJugador(j1, this);
+                } catch (JugadorExpulsadoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+                try {
+                    AccionJugador.run();
+                } catch (NullPointerException ex) {
+                    break;
+                }
+                
+                
+            }
+            
+        }
+        if(e.getActionCommand().equals("marcadorf")){
+            for(Jugador j1: e1.getJugadores().values()){
+                j1.setPuntosTot(j1.getPuntos());
+                j1.setAsistenciasTot(j1.getAsistencias());
+                j1.setIntentosDobleTot(j1.getIntentosDoble());
+                j1.setIntentosTripleTot(j1.getIntentosTriple());
+                j1.setDoblesConvertidosTot(j1.getDoblesConvertidos());
+                j1.setTriplesConvertidosTot(j1.getTriplesConvertidos());
+                j1.setIntentosLibreTot(j1.getIntentosLibre());
+                j1.setLibresConvertidosTot(j1.getLibresConvertidos());
+                j1.setRebotesDefensivosTot(j1.getRebotesDefensivos());
+                j1.setRebotesOfensivosTot(j1.getRebotesOfensivos());
+                j1.setTaponesTot(j1.getTapones());
+                j1.setRobosTot(j1.getRobos());
+                j1.setFaltasTot(j1.getFaltas());
+                try {
+                    serv.guardarJugador(j1);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                j1.clear();
+            }
+            for(Jugador j1: e2.getJugadores().values()){
+                j1.setPuntosTot(j1.getPuntos());
+                j1.setAsistenciasTot(j1.getAsistencias());
+                j1.setIntentosDobleTot(j1.getIntentosDoble());
+                j1.setIntentosTripleTot(j1.getIntentosTriple());
+                j1.setDoblesConvertidosTot(j1.getDoblesConvertidos());
+                j1.setTriplesConvertidosTot(j1.getTriplesConvertidos());
+                j1.setIntentosLibreTot(j1.getIntentosLibre());
+                j1.setLibresConvertidosTot(j1.getLibresConvertidos());
+                j1.setRebotesDefensivosTot(j1.getRebotesDefensivos());
+                j1.setRebotesOfensivosTot(j1.getRebotesOfensivos());
+                j1.setTaponesTot(j1.getTapones());
+                j1.setRobosTot(j1.getRobos());
+                j1.setFaltasTot(j1.getFaltas());
+                try {
+                    serv.guardarJugador(j1);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                j1.clear();
             }
         }
+        
+        
     }
 
     @Override
@@ -228,7 +303,19 @@ public JPanel PanelOpciones(){
                 textfields.get(e1.getNombre()+"Ta").setText(""+j1.getTapones());
                 textfields.get(e1.getNombre()+"Ro").setText(""+j1.getRobos());
                 textfields.get(e1.getNombre()+"Flt").setText(""+j1.getFaltas());
-                
+                 switch (j1.getFaltas()){
+                    case 3:
+                    textfields.get(e1.getNombre()+"Flt").setBackground(Color.yellow);
+                    break;
+                    case 4:
+                    textfields.get(e1.getNombre()+"Flt").setBackground(Color.orange);
+                    break;
+                    case 5:
+                    textfields.get(e1.getNombre()+"Flt").setBackground(Color.red);
+                    break;
+                    default:
+                        break;
+                }
                }
            }
            for(Jugador j1: e2.getJugadores().values()){
@@ -244,6 +331,19 @@ public JPanel PanelOpciones(){
                 textfields.get(e2.getNombre()+"Ta").setText(""+j1.getTapones());
                 textfields.get(e2.getNombre()+"Ro").setText(""+j1.getRobos());
                 textfields.get(e2.getNombre()+"Flt").setText(""+j1.getFaltas());
+                switch (j1.getFaltas()){
+                    case 3:
+                    textfields.get(e2.getNombre()+"Flt").setBackground(Color.yellow);
+                    break;
+                    case 4:
+                    textfields.get(e2.getNombre()+"Flt").setBackground(Color.orange);
+                    break;
+                    case 5:
+                    textfields.get(e2.getNombre()+"Flt").setBackground(Color.red);
+                    break;
+                    default:
+                        break;
+                }
                }
            }
            if(a.getSelectedItem().equals(e2.getNombre())){

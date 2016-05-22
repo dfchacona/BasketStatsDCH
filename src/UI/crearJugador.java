@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Exception.NumeroJugadorException;
 import Servicios.servicios;
 import data.Jugador;
 import java.awt.*;
@@ -112,7 +113,7 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
              
         }
             if(e.getActionCommand().equals("Aceptar")){
-                try{
+                    try{  
                      Jugador j1= new Jugador(nombreT.getText(), apellidoT.getText(), Integer.parseInt(numeroT.getText()), RutaFotoT.getText());
                      serv.guardarJugador(j1);
                      String nombreArchivo=nombreT.getText()+apellidoT.getText()+".txt";
@@ -129,12 +130,16 @@ public class crearJugador extends JFrame implements Runnable, ActionListener{
                      frame.dispose();
                 } catch (FileNotFoundException ex) {
                  
-              } catch  (NumberFormatException exc2) {
+                } catch  (NumberFormatException exc2) {
                  JOptionPane.showMessageDialog(null, "Ingrese los datos completos e intente nuevamente");
                      frame.dispose();
-              }        
+                     
+                }catch(NumeroJugadorException ex2){
+                       JOptionPane.showMessageDialog(null, ex2.getMessage());
+                
              
-        }
+                }
+    }
     }
     public String getJugador(){
         return nombreT.getText()+apellidoT.getText();

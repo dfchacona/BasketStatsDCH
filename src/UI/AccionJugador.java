@@ -10,8 +10,11 @@ import java.awt.*;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import Exception.*;
 
 /**
  *
@@ -33,12 +36,17 @@ public class AccionJugador extends JFrame implements ActionListener,Runnable{
     JButton cancelar;
     ArrayList <JButton> botones; 
     Jugador j1;
-    JFrame padre; 
+    ventanaPartido padre; 
     JFrame frame;
 
-    public AccionJugador(Jugador j1, JFrame padre){
+    public AccionJugador(Jugador j1, ventanaPartido padre) throws JugadorExpulsadoException{
         this.j1 = j1;
+        if (this.j1.getFaltas()==5){
+            throw new JugadorExpulsadoException("Jugador Expulsado");
+        }
+        
         botones= new <JButton> ArrayList(); 
+        this.padre=padre;
         cancelar= new JButton("Cancelar");
         cancelar.addActionListener(this);
     }
@@ -87,69 +95,84 @@ public class AccionJugador extends JFrame implements ActionListener,Runnable{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        ItemEvent ie = null;
         if(e.getActionCommand().equals("Tiro de 2 anotado")){
             frame.dispose();
             j1.anotar2();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
+            
         }
         if(e.getActionCommand().equals("Tiro de 2 fallado")){
             frame.dispose();
             j1.fallar2();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Tiro de 3 anotado")){
             frame.dispose();
             j1.anotar3();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Tiro de 3 fallado")){
             frame.dispose();
             j1.fallar3();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Tiro Libre anotado")){
             frame.dispose();
             j1.anotarLibre();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Tiro Libre Fallado")){
             frame.dispose();
             j1.fallarLibre();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Asistencia")){
             frame.dispose();
             j1.asistir();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Rebote ofensivo")){
             frame.dispose();
             j1.rebotarOfensivo();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Rebote defensivo")){
             frame.dispose();
             j1.rebotarDefensivo();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Tapon")){
             frame.dispose();
             j1.taponar();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Robo")){
             frame.dispose();
             j1.robar();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Falta")){
             frame.dispose();
             j1.cometerfalta();
+            padre.itemStateChanged(ie);
             System.out.println(j1.toString());
         }
         if(e.getActionCommand().equals("Cancelar")){
             frame.dispose();
         }
     }
+
+   
 }
