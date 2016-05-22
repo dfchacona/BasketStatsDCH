@@ -21,6 +21,7 @@ public class Torneo {
         this.nombre = nombre;
         this.equipos = new <String, Equipo>  HashMap();
         this.partidos= new <Partido> ArrayList();
+        this.setPartidos();
         
     }
      
@@ -42,6 +43,9 @@ public class Torneo {
         for(Equipo e1: equipos.values()){
             output=output+"Equipo,"+e1.getNombre()+",";
         }
+        for(Partido p1: partidos){
+            output=output+p1.toOutput();
+        }
         return output;
     }   
 
@@ -55,7 +59,7 @@ public class Torneo {
             for (Equipo e1: equipos.values()){
                 copia.remove(e1.getNombre());
                 for (Equipo e2: copia.values()){
-                    Partido p1= new Partido(e1, e2);
+                    Partido p1= new Partido(e1.getNombre(), e2.getNombre(), this);
                     partidos.add(p1);    
                 }
                 
@@ -66,5 +70,7 @@ public class Torneo {
     public ArrayList<Partido> getPartidos() {
         return partidos;
     }
-    
+    public void anadirPartido(Partido p1){
+        partidos.add(p1);
+    }
 }

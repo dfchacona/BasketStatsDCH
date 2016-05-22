@@ -68,7 +68,13 @@ public class dao {
             Torneo t1= new Torneo(nombre);   
             while(sc.hasNext()){
             String type = sc.next().trim();
-           
+            if (type.equals("Partido")){
+                String nombreEquipoA=sc.next();
+                String nombreEquipoB=sc.next();
+                Partido p1= cargarPartido(nombreEquipoA, nombreEquipoB, t1);
+                t1.anadirPartido(p1);
+                
+            }
             if (type.equals("Equipo")){
                String nombreE= sc.next().trim(); 
                Equipo e1= cargarEquipo(nombreE+".txt");
@@ -77,8 +83,16 @@ public class dao {
             
             }
             }
+            
         return t1;
     } 
-     
+
+    private Partido cargarPartido(String nombreA, String nombreB, Torneo t1) throws FileNotFoundException {
+       
+            Partido p1= new Partido(nombreA, nombreB, t1);
+            return p1;
+            
+    }
+    
      
 }

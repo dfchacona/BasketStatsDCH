@@ -24,13 +24,7 @@ public class BasketStatsDC {
         dao dao= new dao();
        servicios serv= new servicios();
        Runnable VentanaInicio= new VentanaInicio();
-       Runnable creacionTorneo= new creacionTorneo();
-       Torneo t1= dao.cargarTorneo("Integracion.txt");
-       t1.setPartidos();
-       for(Partido p1: t1.getPartidos())
-            System.out.println(p1.toString());
-       
-       
+       VentanaInicio.run();
        
     }
 }    
