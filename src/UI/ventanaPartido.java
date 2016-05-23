@@ -362,6 +362,8 @@ public JPanel PanelOpciones(){
                 for(Jugador j1 : e2.getJugadores().values()){
                     j1.clear();
                 }
+                serv.guardarEquipo(e1);
+                serv.guardarEquipo(e2);
                 serv.guardarTorneo(t1);
                 frame.dispose();
             } catch (FileNotFoundException ex) {
@@ -370,6 +372,7 @@ public JPanel PanelOpciones(){
             } catch (NullPointerException ex2) {
                 p1.setMarcador(e1.getPuntos(), e2.getPuntos());
                 try {
+                    
                     serv.guardarPartido(p1);
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(ventanaPartido.class.getName()).log(Level.SEVERE, null, ex);
