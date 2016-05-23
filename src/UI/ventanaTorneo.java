@@ -10,6 +10,8 @@ import Exception.PartidoNoJugadoException;
 import Servicios.servicios;
 import dao.dao;
 import data.*;
+import java.awt.BorderLayout;
+import java.awt.Choice;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -20,6 +22,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -29,12 +33,16 @@ import javafx.beans.value.ObservableValue;
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author dieguischa
  */
-public class ventanaTorneo implements Runnable, ActionListener{
+public class ventanaTorneo implements Runnable, ActionListener, ListSelectionListener, ItemListener{
     dao dao;
     servicios serv;
     Torneo torneo;
@@ -44,7 +52,17 @@ public class ventanaTorneo implements Runnable, ActionListener{
     JPanel panelClasificacion;
     HashMap <String, JButton> botones;
     HashMap <String, JTextField> textfields;
-    public ventanaTorneo(Torneo torneo){
+    Choice a; 
+    JLabel foto;
+    ImageIcon im;
+    ImageIcon imBotonJ;
+    JLabel nombreLider;
+    JLabel estadisticaLider;
+    JList lista;
+    Jugador j1;
+    JPanel panelLideres;
+    Equipo e1;
+    public ventanaTorneo(Torneo torneo) throws NumeroJugadorException{
        dao= new dao();
        serv= new servicios();
        this.torneo=torneo; 
@@ -52,6 +70,19 @@ public class ventanaTorneo implements Runnable, ActionListener{
        frame= new JFrame();
        botones= new <String, JButton> HashMap();
        textfields=  new <String, JTextField> HashMap();
+       a= new Choice();
+       a.addItem("Jugadores");
+       a.addItem("Equipos");
+       j1=torneo.getLiderPuntos();
+            if(j1.getRutaFoto().equals("")){
+               im= new ImageIcon("desconocido.png");  
+            }else{
+               im= new ImageIcon(j1.getRutaFoto());
+            }
+        foto= new JLabel(im);
+        estadisticaLider= new JLabel(j1.getPPG()+"PPG");
+        nombreLider= new JLabel(j1.getNombre()+" "+j1.getApellido());
+        imBotonJ= new ImageIcon("Play.png");
     }
     public JPanel panelPartidosT(){
         
@@ -68,7 +99,7 @@ public class ventanaTorneo implements Runnable, ActionListener{
             JLabel EquipoB= new JLabel(p1.getEquipoB());
             panelM1B.add(tfequipoB);
             panelM1B.add(EquipoB);
-            JButton jugar= new JButton ("Jugar");
+            JButton jugar= new JButton (imBotonJ);
             jugar.addActionListener(this);
             jugar.setActionCommand(p1.getEquipoA()+p1.getEquipoB()+"jugar");
             JButton stats= new JButton ("Estadisticas");
@@ -88,6 +119,7 @@ public class ventanaTorneo implements Runnable, ActionListener{
     }
     public JPanel panelClasificacionT(){
         
+        
         panelClasificacion= new JPanel(new GridLayout(torneo.getEquipos().size()+1, 3));
         panelClasificacion.add(new JLabel("Nombre Equipo"));
         panelClasificacion.add(new JLabel("Record Equipo"));
@@ -95,9 +127,10 @@ public class ventanaTorneo implements Runnable, ActionListener{
         for (Equipo e1: torneo.getEquipos().values()) {
             JLabel EquipoA= new JLabel(e1.getNombre());
             JLabel RecordEquipo= new JLabel(e1.getPartidosGanados()+"-"+e1.getPartidosPerdidos());
-            JLabel PorcentajeEquipo= new JLabel(".000"); 
+            JLabel PorcentajeEquipo= new JLabel("0.0"); 
             try{
-            PorcentajeEquipo.setText(""+e1.getPartidosGanados()/e1.getPartidosJugados());
+            double porcentajeEquipo=e1.getPartidosGanados()*100/e1.getPartidosJugados();  
+            PorcentajeEquipo.setText(""+porcentajeEquipo);
             }catch(ArithmeticException ex){
                
             }
@@ -110,32 +143,50 @@ public class ventanaTorneo implements Runnable, ActionListener{
         return panelClasificacion;
     }
     public JPanel panelLideresT() throws NumeroJugadorException{
+        JPanel panelM= new JPanel(new BorderLayout());
+        panelM.add(a, BorderLayout.NORTH);
+        a.addItemListener(this);
+        lista = new JList();
         
-        JPanel panelLideres = new JPanel(new GridLayout(3, 2));
-        Jugador j1=torneo.getLiderPuntos();
-        Jugador j2=torneo.getLiderAsistencias();
-        Jugador j3=torneo.getLiderFG();
-        panelLideres.add(new JLabel(j1.getNombre()+" "+j1.getApellido()));
-        panelLideres.add(new JLabel(""+j1.getPuntosTot()));
-        panelLideres.add(new JLabel(j2.getNombre()+" "+j2.getApellido()));
-        panelLideres.add(new JLabel(""+j2.getAsistenciasTot()));
-        panelLideres.add(new JLabel(j3.getNombre()));
-        panelLideres.add(new JLabel(""+j3.getTCTot()+"%"));
+        lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION ); 
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.addElement("Puntos");
+        modelo.addElement("Asistencias");
+        modelo.addElement("Porcentaje TC");
+        modelo.addElement("Porcentaje 3TC");
+        modelo.addElement("Porcentaje TL");
+        modelo.addElement("Rebotes");
+        modelo.addElement("Tapones");
+        modelo.addElement("Robos");
+        lista.setModel(modelo);
+        lista.addListSelectionListener(this);
+        JScrollPane scrollLista = new JScrollPane();
+        scrollLista.setBounds(20, 120,220, 80);
+        scrollLista.setViewportView(lista);
+        panelM.add(scrollLista, BorderLayout.WEST);
+        JPanel panelLideres = new JPanel(new FlowLayout());
+        panelLideres.add(foto); 
+        panelLideres.add(nombreLider);
+        panelLideres.add(estadisticaLider);
+        panelM.add(panelLideres, BorderLayout.CENTER);
         
         
-        return panelLideres;
+        return panelM;
     }
+    @Override
     public void run(){
         tabs.addTab("Partidos", panelPartidosT());  
         tabs.addTab("Clasificación", panelClasificacionT());
         try {
-            tabs.addTab("Lideres", panelLideresT());
+            panelLideres= panelLideresT();
         } catch (NumeroJugadorException ex) {
             Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tabs.addTab("Lideres", panelLideres);
+        
         frame.add(tabs);
         
-        frame.setSize(300,300);
+        frame.setSize(570,64*torneo.getEquipos().size());
         frame.setVisible(true);
        
           
@@ -177,5 +228,153 @@ public class ventanaTorneo implements Runnable, ActionListener{
               
     }
 
+     public void actualizar(){
+        tabs.removeAll();
+        tabs.addTab("Partidos", panelPartidosT());  
+        tabs.addTab("Clasificación", panelClasificacionT());
+        try {
+            tabs.addTab("Lideres", panelLideresT());
+        } catch (NumeroJugadorException ex) {
+            Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        frame.add(tabs);
+        
+        frame.setSize(300,300);
+        frame.setVisible(true);
+       
+          
+        
+    }
 
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+       if(a.getSelectedItem().equals("Jugadores")){
+       if(lista.getSelectedIndex()==0){
+           try {
+               j1=torneo.getLiderPuntos();
+           } catch (NumeroJugadorException ex) {
+               Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
+           }
+               nombreLider.setText(j1.getNombre()+" "+j1.getApellido());
+               estadisticaLider.setText(j1.getPPG()+" PPG");
+               if(j1.getRutaFoto().equals("")){
+               im= new ImageIcon("desconocido.png");  
+                }else{
+               im= new ImageIcon(j1.getRutaFoto());
+               }
+               foto.setIcon(im);
+               panelLideres.repaint();
+           
+       }    
+        if(lista.getSelectedIndex()==1){
+           try {
+               j1=torneo.getLiderAsistencias();
+           } catch (NumeroJugadorException ex) {
+               Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
+           }
+               nombreLider.setText(j1.getNombre()+" "+j1.getApellido());
+               estadisticaLider.setText(j1.getAPG()+" APG");
+               if(j1.getRutaFoto().equals("")){
+               im= new ImageIcon("desconocido.png");  
+                }else{
+               im= new ImageIcon(j1.getRutaFoto());
+               }
+               foto.setIcon(im);
+               panelLideres.repaint();
+           
+       } 
+       if(lista.getSelectedIndex()==2){
+           try {
+               j1=torneo.getLiderFG();
+           } catch (NumeroJugadorException ex) {
+               Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
+           }
+               nombreLider.setText(j1.getNombre()+" "+j1.getApellido());
+               estadisticaLider.setText(j1.getPorcentajeTCTot()+"%");
+               if(j1.getRutaFoto().equals("")){
+               im= new ImageIcon("desconocido.png");  
+                }else{
+               im= new ImageIcon(j1.getRutaFoto());
+               }
+               foto.setIcon(im);
+               panelLideres.repaint();
+           
+       }
+       if(lista.getSelectedIndex()==3){
+           try {
+               j1=torneo.getLider3FG();
+           } catch (NumeroJugadorException ex) {
+               Logger.getLogger(ventanaTorneo.class.getName()).log(Level.SEVERE, null, ex);
+           }
+               nombreLider.setText(j1.getNombre()+" "+j1.getApellido());
+               estadisticaLider.setText(j1.getPorcentajeTriplesTot()+"%");
+               if(j1.getRutaFoto().equals("")){
+               im= new ImageIcon("desconocido.png");  
+                }else{
+               im= new ImageIcon(j1.getRutaFoto());
+               }
+               foto.setIcon(im);
+               panelLideres.repaint();
+           
+       }
+       
+       }
+       if(a.getSelectedItem().equals("Equipos")){
+          if(lista.getSelectedIndex()==0){
+           
+               e1=torneo.getLiderEquipoPuntos();
+           
+               nombreLider.setText(e1.getNombre());
+               estadisticaLider.setText(e1.getPPG()+" PPG");
+               im= new ImageIcon("equipo.png");  
+               foto.setIcon(im);
+               panelLideres.repaint();
+               
+           
+       }    
+          if(lista.getSelectedIndex()==1){
+           
+               e1=torneo.getLiderEquipoAsistencias();
+           
+               nombreLider.setText(e1.getNombre());
+               estadisticaLider.setText(e1.getAPG()+" APG");
+               im= new ImageIcon("equipo.png");  
+               foto.setIcon(im);
+               panelLideres.repaint();
+               
+           
+       } 
+           if(lista.getSelectedIndex()==2){
+           
+                e1=torneo.getLiderEquipoFG();
+           
+               nombreLider.setText(e1.getNombre());
+               estadisticaLider.setText(e1.getPorcentajeTCTot()+" %");
+               im= new ImageIcon("equipo.png");  
+               foto.setIcon(im);
+               panelLideres.repaint();
+               
+           
+       } 
+           if(lista.getSelectedIndex()==3){
+           
+                e1=torneo.getLiderEquipo3FG();
+           
+               nombreLider.setText(e1.getNombre());
+               estadisticaLider.setText(e1.getPorcentaje3TCTot()+" %");
+               im= new ImageIcon("equipo.png");  
+               foto.setIcon(im);
+               panelLideres.repaint();
+               
+           
+       } 
+       }
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+       
+    }
+
+    
 }

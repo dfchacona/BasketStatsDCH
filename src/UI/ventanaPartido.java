@@ -356,12 +356,18 @@ public JPanel PanelOpciones(){
                 serv.guardarPartido(p1);
                 padre.textfields.get(e1.getNombre()+e2.getNombre()).setText(""+e1.getPuntos());
                 padre.textfields.get(e2.getNombre()+e1.getNombre()).setText(""+e2.getPuntos());
+                padre.actualizar();
                 for(Jugador j1 : e1.getJugadores().values()){
                     j1.clear();
+                    j1.jugarPartido();
+                    serv.guardarJugador(j1);
                 }
                 for(Jugador j1 : e2.getJugadores().values()){
                     j1.clear();
+                    j1.jugarPartido();
+                    serv.guardarJugador(j1);
                 }
+                
                 serv.guardarEquipo(e1);
                 serv.guardarEquipo(e2);
                 serv.guardarTorneo(t1);

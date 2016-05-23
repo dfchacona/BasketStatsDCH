@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Exception.NumeroJugadorException;
 import Servicios.servicios;
 import java.awt.BorderLayout;
 import java.awt.*;
@@ -84,7 +85,12 @@ public class cargarTorneo implements Runnable, ActionListener{
             } catch (FileNotFoundException ex) {
                 
             }
-         Runnable ventanaTorneo= new ventanaTorneo(t1);
+         Runnable ventanaTorneo = null;
+            try {
+                ventanaTorneo = new ventanaTorneo(t1);
+            } catch (NumeroJugadorException ex) {
+                Logger.getLogger(cargarTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
          ventanaTorneo.run();
          frame.dispose();
         }

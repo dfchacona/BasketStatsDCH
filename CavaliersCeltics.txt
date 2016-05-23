@@ -1,4 +1,4 @@
-Partido,Cavaliers,Celtics,3,0,Equipo: Cavaliers
+Partido,Cavaliers,Celtics,3,2,Equipo: Cavaliers
 Puntos Totales: 3
 Asistencias Totales: 0
 Rebotes Totales: 0
@@ -9,18 +9,18 @@ Faltas Totales: 0
 
 Nombre: Kevin Love
 Numero: 0
-Puntos=0
+Puntos=3
 Asistencias=0
 Rebotes Defensivos=0
 Rebotes Ofensivos=0
 Tapones=0
 Robos=0
 Faltas=0
-Tiros de campo=0/0
-Tiros de 3=0/0
+Tiros de campo=1/1
+Tiros de 3=1/1
 TirosLibres=0/0
-Porcentaje TC=0.0%
-Porcentaje Triples=0.0%
+Porcentaje TC=100.0%
+Porcentaje Triples=100.0%
 Porcentaje TL=0.0%
 
 Nombre: XXXX XXXX
@@ -57,18 +57,18 @@ Porcentaje TL=0.0%
 
 Nombre: ZZZZ ZZZZ
 Numero: 6
-Puntos=3
+Puntos=0
 Asistencias=0
 Rebotes Defensivos=0
 Rebotes Ofensivos=0
 Tapones=0
 Robos=0
 Faltas=0
-Tiros de campo=1/1
-Tiros de 3=1/1
+Tiros de campo=0/0
+Tiros de 3=0/0
 TirosLibres=0/0
-Porcentaje TC=100.0%
-Porcentaje Triples=100.0%
+Porcentaje TC=0.0%
+Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
 Nombre: LeBron James
@@ -88,7 +88,7 @@ Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
 Equipo: Celtics
-Puntos Totales: 0
+Puntos Totales: 2
 Asistencias Totales: 0
 Rebotes Totales: 0
 Rebotes Ofensivos Totales: 0
@@ -98,17 +98,17 @@ Faltas Totales: 0
 
 Nombre: Avery Bradley
 Numero: 0
-Puntos=0
+Puntos=2
 Asistencias=0
 Rebotes Defensivos=0
 Rebotes Ofensivos=0
 Tapones=0
 Robos=0
 Faltas=0
-Tiros de campo=0/0
+Tiros de campo=1/1
 Tiros de 3=0/0
 TirosLibres=0/0
-Porcentaje TC=0.0%
+Porcentaje TC=100.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 

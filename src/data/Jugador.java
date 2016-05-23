@@ -216,6 +216,12 @@ public class Jugador {
        this.faltas++;
     }
     /**
+     * Metodo ejecutado cuando un jugador juega un partido
+     */   
+       public void jugarPartido(){
+          this.partidosJugados++;
+       }
+    /**
      * Metodo que retorna la cantidad de puntos en el partido 
      * @return puntos 
      */   
@@ -695,5 +701,60 @@ public class Jugador {
     public String toOutput(){
         return ""+nombre+","+apellido+","+numero+","+rutaFoto+","+puntosTot+","+asistenciasTot+","+this.getRebotesTot()+","+rebotesOfensivosTot+","+taponesTot+","+robosTot+","+faltasTot+","+doblesConvertidosTot+","+intentosDobleTot+","
                 +triplesConvertidosTot+","+intentosTripleTot+","+libresConvertidosTot+","+intentosLibreTot+","+partidosJugados+",";
+    }
+    /**
+     * Metodo que retorna el promedio de puntos por partido del jugador
+     * @return Puntos por partido
+     */
+    public double getPPG(){
+        try {
+            return this.puntosTot/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+    /**
+     * Metodo que retorna el promedio de asistencias por partido del jugador
+     * @return Aasistencias por partido
+     */
+    public double getAPG(){
+        try {
+            return this.asistenciasTot/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+    /**
+     * Metodo que retorna el promedio de rebotes por partido del jugador
+     * @return Rebotes por partido
+     */
+    public double getRPG(){
+        try {
+            return this.rebotesTot/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+    /**
+     * Metodo que retorna el promedio de robos por partido del jugador
+     * @return Robos por partido
+     */
+    public double getRoPG(){
+        try {
+            return this.robosTot/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+    /**
+     * Metodo que retorna el promedio de tapas por partido del jugador
+     * @return Tapas por partido
+     */
+    public double getTPG(){
+        try {
+            return this.taponesTot/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
     }
 }

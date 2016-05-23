@@ -1,1 +1,1 @@
-Celtics,0,0,Jugador,Avery,Bradley,Jugador,XXXX,XXXX,Jugador,Marcus,Smart,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,
+Celtics,2,0,Jugador,Avery,Bradley,Jugador,XXXX,XXXX,Jugador,Marcus,Smart,Jugador,YYYY,YYYY,Jugador,ZZZZ,ZZZZ,

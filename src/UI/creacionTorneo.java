@@ -140,7 +140,12 @@ public class creacionTorneo extends JFrame implements ItemListener,ActionListene
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(creacionTorneo.class.getName()).log(Level.SEVERE, null, ex);
             }
-         Runnable ventanaTorneo= new ventanaTorneo(t1);
+         Runnable ventanaTorneo = null;
+            try {
+                ventanaTorneo = new ventanaTorneo(t1);
+            } catch (NumeroJugadorException ex) {
+                Logger.getLogger(creacionTorneo.class.getName()).log(Level.SEVERE, null, ex);
+            }
          ventanaTorneo.run();
          frame.dispose();
         } 

@@ -1,6 +1,6 @@
-Partido,Heat,Cavaliers,0,2,Equipo: Heat
-Puntos Totales: 0
-Asistencias Totales: 0
+Partido,Heat,Cavaliers,2,0,Equipo: Heat
+Puntos Totales: 2
+Asistencias Totales: 8
 Rebotes Totales: 1
 Rebotes Ofensivos Totales: 0
 Robos Totales: 0
@@ -25,17 +25,17 @@ Porcentaje TL=0.0%
 
 Nombre: Dwayne Wade
 Numero: 3
-Puntos=0
-Asistencias=0
+Puntos=2
+Asistencias=8
 Rebotes Defensivos=0
 Rebotes Ofensivos=0
 Tapones=0
 Robos=0
 Faltas=0
-Tiros de campo=0/0
+Tiros de campo=1/1
 Tiros de 3=0/0
 TirosLibres=0/0
-Porcentaje TC=0.0%
+Porcentaje TC=100.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
@@ -88,7 +88,7 @@ Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 
 Equipo: Cavaliers
-Puntos Totales: 2
+Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 0
 Rebotes Ofensivos Totales: 0
@@ -98,17 +98,17 @@ Faltas Totales: 0
 
 Nombre: Kevin Love
 Numero: 0
-Puntos=2
+Puntos=0
 Asistencias=0
 Rebotes Defensivos=0
 Rebotes Ofensivos=0
 Tapones=0
 Robos=0
 Faltas=0
-Tiros de campo=1/2
-Tiros de 3=0/1
+Tiros de campo=0/0
+Tiros de 3=0/0
 TirosLibres=0/0
-Porcentaje TC=50.0%
+Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
 

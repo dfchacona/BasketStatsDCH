@@ -114,13 +114,26 @@ public class Torneo {
         liderPuntos.setPuntosTot(0);
         for(Equipo e1: this.equipos.values()){
             for(Jugador j1: e1.getJugadores().values()){
-                if (j1.getPuntosTot()>liderPuntos.getPuntosTot()){
+                if (j1.getPPG()>liderPuntos.getPPG()){
                     liderPuntos=j1; 
                 }
             }
         }
         return liderPuntos; 
     }
+/**
+ * Metodo que permite obtener el equipo que mas puntos ha anotado a lo largo del torneo
+ * @return Jugador lider en puntos
+ */
+    public Equipo getLiderEquipoPuntos() {
+        Equipo liderPuntos= new Equipo("Dummy");
+        for(Equipo e1: this.equipos.values()){
+                if (e1.getPPG()>liderPuntos.getPPG()){
+                liderPuntos=e1; 
+            }
+        }
+        return liderPuntos; 
+    }    
 /**
  * Metodo que permite obtener el jugador que mas asistencias ha repartido a lo largo del torneo
  * @return Jugador lider en asistencias
@@ -139,6 +152,21 @@ public class Torneo {
         return liderPuntos; 
     }
 /**
+ * Metodo que permite obtener el equipo que mas puntos ha anotado a lo largo del torneo
+ * @return Jugador lider en puntos
+ */
+    public Equipo getLiderEquipoAsistencias() {
+            double PuntosLider=0;
+            Equipo ret = null;
+        for(Equipo e1: this.equipos.values()){
+                if (e1.getAPG()>PuntosLider){
+                   ret = e1;
+                PuntosLider=e1.getAsistenciasTot();
+            }
+        }
+        return ret; 
+    }        
+/**
  * Metodo que permite obtener el jugador con mejor porcentaje de conversion a lo largo del torneo
  * @return Jugador lider en porcentaje de tiros de campo
  * @throws NumeroJugadorException excepcion generada cuando el numero del jugador es invalido
@@ -156,4 +184,54 @@ public class Torneo {
         }
         return liderPuntos; 
     }
+/**
+ * Metodo que permite obtener el equipo con mejor porcentaje de 
+ * tiros de campo a lo largo del torneo
+ * @return Jugador lider en puntos
+ *
+ */
+    public Equipo getLiderEquipoFG() {
+        Equipo liderPuntos= new Equipo("Dummy");
+        for(Equipo e1: this.equipos.values()){
+                if (e1.getPorcentajeTCTot()>liderPuntos.getPorcentajeTCTot()){
+                liderPuntos=e1; 
+            }
+        }
+        return liderPuntos; 
+    }  
+/**
+ * Metodo que permite obtener el jugador con mejor porcentaje de conversion de triples a lo largo del torneo
+ * @return Jugador lider en porcentaje de tiros de campo
+ * @throws NumeroJugadorException excepcion generada cuando el numero del jugador es invalido
+ */    
+    public Jugador getLider3FG() throws NumeroJugadorException{
+        Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
+        liderPuntos.setDoblesConvertidosTot(0);
+        liderPuntos.setIntentosDobleTot(0);
+        for(Equipo e1: this.equipos.values()){
+            for(Jugador j1: e1.getJugadores().values()){
+                if (j1.getPorcentajeTriplesTot()>liderPuntos.getPorcentajeTriplesTot()){
+                    liderPuntos=j1; 
+                }
+            }
+        }
+        return liderPuntos; 
+    }    
+    /**
+ * Metodo que permite obtener el equipo con mejor porcentaje de 
+ * conversion de triples a lo largo del torneo
+ * @return Jugador lider en puntos
+ * 
+ */
+    public Equipo getLiderEquipo3FG(){
+        Equipo liderPuntos= new Equipo("Dummy");
+        for(Equipo e1: this.equipos.values()){
+                if (e1.getPorcentaje3TCTot()>liderPuntos.getPorcentaje3TCTot()){
+                liderPuntos=e1; 
+            }
+        }
+        return liderPuntos; 
+    } 
 }
+ 
+

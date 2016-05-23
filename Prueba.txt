@@ -1,4 +1,4 @@
-Prueba,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Partido,Heat,Cavaliers,0,2,Equipo: Heat
+Prueba,Equipo,Heat,Equipo,Cavaliers,Equipo,Celtics,Partido,Heat,Cavaliers,2,0,Equipo: Heat
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 1
@@ -175,7 +175,7 @@ TirosLibres=0/0
 Porcentaje TC=0.0%
 Porcentaje Triples=0.0%
 Porcentaje TL=0.0%
-,Partido,Cavaliers,Celtics,3,0,Equipo: Cavaliers
+,Partido,Cavaliers,Celtics,3,2,Equipo: Cavaliers
 Puntos Totales: 0
 Asistencias Totales: 0
 Rebotes Totales: 0

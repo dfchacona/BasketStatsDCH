@@ -5,6 +5,7 @@
  */
 package data;
 
+import Exception.NumeroJugadorException;
 import java.util.*;
 
 /**
@@ -27,6 +28,13 @@ public class Equipo {
         this.jugadores=jugadores;
         this.partidosJugados=0;
         this.partidosGanados=0;
+    }
+    public Equipo() throws NumeroJugadorException{
+        Jugador j1= new Jugador("Dummy", "Dummy", 0, "");
+        j1.setAsistenciasTot(0);
+        jugadores= new <Integer, Jugador> HashMap(); 
+        this.anadirJugador(j1);
+        this.partidosJugados=0;
     }
     /**
      * Metodo que retorna la lista de jugadores del equipo
@@ -394,6 +402,26 @@ public class Equipo {
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
        /**
+     * Metodo que permite obtener el porcentaje de tiros de campo del equipo
+     * @return Porcentaje de tiros de campo del equipo
+     */
+    public double getPorcentajeTCTot(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosDoble();
+            aciertos+=j1.getDoblesConvertidos();
+            
+        }
+        try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentaje;
+    }
+       /**
      * Metodo que permite obtener la una cadena de texto que involucra la cantidad
      * de intentos de triples del equipo la cantidad de triples fallados y el porcentaje
      * correspondiente sumando la de todos sus jugadores a lo largo del torneo
@@ -416,6 +444,26 @@ public class Equipo {
        
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+     /**
+     * Metodo que permite obtener el porcentaje de triples del equipo
+     * @return Porcentaje de tiros de campo del equipo
+     */
+    public double getPorcentaje3TCTot(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosTriple();
+            aciertos+=j1.getTriplesConvertidos();
+            
+        }
+        try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentaje;
+    }
        /**
      * Metodo que permite obtener la una cadena de texto que involucra la cantidad
      * de intentos de libre del equipo la cantidad de tiros libres fallados y el porcentaje
@@ -437,5 +485,81 @@ public class Equipo {
             return "0/0---0.0%";
         }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
+    }
+      /**
+     * Metodo que permite obtener el porcentaje de libres del equipo
+     * @return Porcentaje de tiros de campo del equipo
+     */
+    public double getPorcentajeTLTot(){
+        int intentos=0;
+        int aciertos=0;
+        double porcentaje=0;
+        for(Jugador j1:this.jugadores.values()){
+            intentos+=j1.getIntentosLibre();
+            aciertos+=j1.getLibresConvertidos();
+            
+        }
+        try {
+             porcentaje=aciertos*100/intentos;
+        } catch(Exception ArithmeticException){
+            return 0;
+        }
+        return porcentaje;
+    }
+      /**
+     * Metodo que retorna el promedio de puntos por partido del equipo
+     * @return Puntos por partido
+     */
+    public double getPPG(){
+        try {
+            return this.getPuntosTot()/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+      /**
+     * Metodo que retorna el promedio de asisitencias por partido del equipo
+     * @return Puntos por partido
+     */
+    public double getAPG(){
+        try {
+            double APG= (double)this.getAsistenciasTot()/this.partidosJugados;
+            return APG;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+      /**
+     * Metodo que retorna el promedio de rebotes por partido del equipo
+     * @return Puntos por partido
+     */
+    public double getRPG(){
+        try {
+            return this.getRebotesDTot()+this.getRebotesOTot()/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+      /**
+     * Metodo que retorna el promedio de Robos por partido del equipo
+     * @return Puntos por partido
+     */
+    public double getRoPG(){
+        try {
+            return this.getRobostTot()/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
+    }
+      /**
+     * Metodo que retorna el promedio de tapas por partido del equipo
+     * @return Puntos por partido
+     */
+    public double getTPG(){
+        try {
+            return this.getTaponesTot()/this.partidosJugados;
+        } catch (ArithmeticException e) {
+            return 0;
+        }
     }
 }
