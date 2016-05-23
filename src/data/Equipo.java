@@ -8,7 +8,7 @@ package data;
 import java.util.*;
 
 /**
- *
+ * Clase equipo pertenceinte a la clase torneo 
  * @author dieguischa
  */
 public class Equipo {
@@ -17,6 +17,10 @@ public class Equipo {
     private int partidosJugados; 
     private int partidosGanados; 
     private int partidosPerdidos;
+    /**
+     * Metodo constructor que permite crear a un equipo
+     * @param nombre Nombre del equipo
+     */
     public Equipo(String nombre){
         HashMap <Integer, Jugador> jugadores= new HashMap(); 
         this.nombre=nombre;
@@ -24,40 +28,70 @@ public class Equipo {
         this.partidosJugados=0;
         this.partidosGanados=0;
     }
-
+    /**
+     * Metodo que retorna la lista de jugadores del equipo
+     * @return  Lista de jugadores
+     */
     public HashMap<Integer, Jugador> getJugadores() {
         return jugadores;
     }
-
+    /**
+     * Metodo implementado cuando un equipo gana un partido
+     */
     public void ganarPartido() {
        this.partidosGanados++;
     }
-
+    /**
+     * Metodo implementado cuando un equipo juega un partido
+     */
     public void jugarPartido() {
         this.partidosJugados++;
     }
-
+    /**
+     * Metodo que retorna la cantidad de partidos perdidos por un equipo 
+     * restando la cantidad de partidos jugados y la de partidos ganados
+     * @return Partidos perdidos
+     */
     public int getPartidosPerdidos() {
         partidosPerdidos=this.partidosJugados-this.partidosGanados;
         return partidosPerdidos;
     }
-
+    /**
+     * Metodo que permite añadir un jugador a la lista de jugadores del equipo
+     * @param j Jugador que sera añadido
+     */
     public void anadirJugador(Jugador j) {
         this.jugadores.put(j.getNumero(), j);
     }
-
+    /**
+     * Metodo que retorna el nombre del equipo 
+     * @return Nombre del equipo 
+     */
     public String getNombre() {
         return nombre;
     }
-
+    /**
+     * Metodo Para asignarle una cantidad de partidos a la 
+     * variable partidos jugados
+     * @param partidosJugados valor que sera asignado
+     */
     public void setPartidosJugados(int partidosJugados) {
         this.partidosJugados = partidosJugados;
     }
-
+    /**
+     * MetMetodo Para asignarle una cantidad de partidos a la 
+     * variable partidos ganados
+     * @param partidosGanados valor que sera asignado
+     */
     public void setPartidosGanados(int partidosGanados) {
         this.partidosGanados = partidosGanados;
     }
- 
+    /**
+     * Metodo que retorna una cadena que contiene la informacion del equipo 
+     * tanto como estadisticas de todo el equipo como la estadisticas individuales
+     * de cada uno de sus jugadores
+     * @return Cadena de texto con dicha representacion 
+     */
     @Override
     public String toString() {
         String ret="Equipo: " + this.getNombre()
@@ -75,7 +109,10 @@ public class Equipo {
         return ret;
         
     }
-
+    /**
+     * Metodo que retorna una cadena de texto que sera guardada en un archivo 
+     * @return Cadena a ser guardada
+     */
     public String toOutput(){
         String output=""+nombre+",";
         output=output+this.partidosJugados+","+this.partidosGanados+",";
@@ -85,7 +122,11 @@ public class Equipo {
         
         return output;
     }
-    
+    /**
+     * Metodo que permite obtener la cantidad de puntos totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de puntos
+     */
     public int getPuntos(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -93,6 +134,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de asistencias totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de asistencias
+     */
     public int getAsistencias(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -100,6 +146,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de rebotes defensivos totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de rebotes defensivos
+     */
     public int getRebotesD(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -107,6 +158,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de rebotes ofensivos totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de rebotes ofensivos
+     */
     public int getRebotesO(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -114,6 +170,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de tapones totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de tapones
+     */
     public int getTapones(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -121,6 +182,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de robos totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de robos
+     */
     public int getRobos(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -128,6 +194,11 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la cantidad de faltas totales del equipo 
+     * sumando la de todos sus jugadores
+     * @return Cantidad de faltas
+     */
     public int getFaltas(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -135,6 +206,12 @@ public class Equipo {
         }
         return puntos;
     }
+    /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de campo del equipo la cantidad de tiros fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores
+     * @return Cadena de informacion de los tiros de campo
+     */
     public String getTC(){
         int intentos=0;
         int aciertos=0;
@@ -151,6 +228,12 @@ public class Equipo {
         }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+    /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de triple del equipo la cantidad de triples fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores
+     * @return Cadena de informacion de los triples
+     */
      public String get3TC(){
         int intentos=0;
         int aciertos=0;
@@ -168,6 +251,12 @@ public class Equipo {
        
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+     /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de libre del equipo la cantidad de tiros libres fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores
+     * @return Cadena de informacion de los tiros libres
+     */
       public String getTL(){
         int intentos=0;
         int aciertos=0;
@@ -184,6 +273,11 @@ public class Equipo {
         }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+      /**
+     * Metodo que permite obtener la cantidad de puntos totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de puntos
+     */
        public int getPuntosTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -191,15 +285,25 @@ public class Equipo {
         }
         return puntos;
     }
-
+    /**
+     * Metodo que retorna la cantidad de partidos jugados por el equipo
+     * @return Cantidad de partidos jugados
+     */   
     public int getPartidosJugados() {
         return partidosJugados;
     }
-
+    /**
+     * Metodo que retorna la cantidad de partidos ganados por el equipo
+     * @return Cantidad de partidos ganados
+     */  
     public int getPartidosGanados() {
         return partidosGanados;
     }
-       
+      /**
+     * Metodo que permite obtener la cantidad de asistencias totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de puntos
+     */   
     public int getAsistenciasTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -207,6 +311,11 @@ public class Equipo {
         }
         return puntos;
     }
+      /**
+     * Metodo que permite obtener la cantidad de reotes defensivos totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de rebotes defensivos
+     */
     public int getRebotesDTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -214,6 +323,11 @@ public class Equipo {
         }
         return puntos;
     }
+      /**
+     * Metodo que permite obtener la cantidad de rebotes ofensivos totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de rebotes ofensivos
+     */
     public int getRebotesOTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -221,6 +335,11 @@ public class Equipo {
         }
         return puntos;
     }
+      /**
+     * Metodo que permite obtener la cantidad de tapones totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de tapones
+     */
     public int getTaponesTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -228,6 +347,11 @@ public class Equipo {
         }
         return puntos;
     }
+      /**
+     * Metodo que permite obtener la cantidad de robos totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de tobos
+     */
     public int getRobostTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -235,6 +359,11 @@ public class Equipo {
         }
         return puntos;
     }
+      /**
+     * Metodo que permite obtener la cantidad de faltas totales del equipo
+     * a lo largo del torneo sumando la de todos sus jugadores
+     * @return Cantidad de faltas
+     */
     public int getFaltasTot(){
         int puntos=0;
         for(Jugador j1:this.jugadores.values()){
@@ -242,6 +371,12 @@ public class Equipo {
         }
         return puntos;
     }
+       /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de campo del equipo la cantidad de tiros de campo fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores a lo largo del torneo
+     * @return Cadena de informacion de los tiros campo
+     */
     public String getTCTot(){
         int intentos=0;
         int aciertos=0;
@@ -258,6 +393,12 @@ public class Equipo {
         }
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+       /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de triples del equipo la cantidad de triples fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores a lo largo del torneo
+     * @return Cadena de informacion de los triples
+     */
      public String get3TCTot(){
         int intentos=0;
         int aciertos=0;
@@ -275,6 +416,12 @@ public class Equipo {
        
         return aciertos+"/"+intentos+"---"+porcentaje+"%";
     }
+       /**
+     * Metodo que permite obtener la una cadena de texto que involucra la cantidad
+     * de intentos de libre del equipo la cantidad de tiros libres fallados y el porcentaje
+     * correspondiente sumando la de todos sus jugadores a lo largo del torneo
+     * @return Cadena de informacion de los tiros libres
+     */
       public String getTLTot(){
         int intentos=0;
         int aciertos=0;

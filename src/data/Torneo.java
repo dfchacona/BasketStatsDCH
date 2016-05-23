@@ -9,8 +9,10 @@ import Exception.NumeroJugadorException;
 import java.util.*;
 
 /**
- *
- * @author dieguischa
+ * @author Diego Fernando Chacon
+ * @since 10/05/16
+ * @version 1.9
+ * Clase que crea objetos de tipo torneo 
  */
 public class Torneo {
     private String nombre; 
@@ -18,27 +20,43 @@ public class Torneo {
     private HashMap <String,Partido> partidos;
     private int numEquipos; 
 
+/**
+ * Metodo constructor de la clase torneo 
+ * @param nombre Nombre del torneo 
+ */
     public Torneo(String nombre) {
         this.nombre = nombre;
         this.equipos = new <String, Equipo>  HashMap();
         this.partidos= new <String,Partido> HashMap();
-        this.setPartidos();
-        
+        this.setPartidos();       
     }
-     
+/**
+ * Metodo para añadir un torneo
+ * @param e equipo que se vinculara al torneo
+ */     
     public void anadirEquipo(Equipo e){
         equipos.put(e.getNombre(), e);
         this.numEquipos++;
     }
-
+/**
+ * Metodo para añadir un torneo
+ * @return Devuelve el torneo en forma de cadena de caracteres
+ */  
     @Override
     public String toString() {
         return "Torneo{" + "nombre=" + nombre + ", equipos=" + equipos + '}';
     }
-
+/**
+ * Metodo que retorna la lista de equipos del torneo
+ * @return Lista de equipos
+ */
     public HashMap<String, Equipo> getEquipos() {
         return equipos;
     }
+/**
+ * Metodo que retorna la cadena de caracteres que se guarda en un archivo de texto
+ * @return Devuelve la cadena que se va a guardar
+ */    
     public String toOutput(){
         String output = ""+nombre+",";
         for(Equipo e1: equipos.values()){
@@ -49,7 +67,10 @@ public class Torneo {
         }
         return output;
     }   
-
+/**
+ * Metodo para obtener el nombre del torneo 
+ * @return Devuelve el nombre del torneo
+ */
     public String getNombre() {
         return nombre;
     }
@@ -67,16 +88,27 @@ public class Torneo {
         }
         }
     }
-
+/**
+ * Metodo para obtener la lista de partidos del torneo
+ * @return Devuelve la lista de los partidos
+ */ 
     public HashMap<String,Partido> getPartidos() {
         return partidos;
     }
+/**
+ * Metodo para añadir un partido al HashMap de partidos del torneo
+ * @param p1 Partido que sera añadido
+ * @param e1 Nombre del primer equipo
+ * @param e2 Nombre del segundo equipo
+ */    
     public void anadirPartido(Partido p1, String e1, String e2){
         partidos.put(e1+e2,p1);
     }
-    public void guardarPartido(Partido p1, String e1, String e2){
-        partidos.replace(e1+e2,p1);
-    }
+/**
+ * Metodo que permite obtener el jugador que mas puntos ha anotado a lo largo del torneo
+ * @return Jugador lider en puntos
+ * @throws NumeroJugadorException excepcion generada cuando el numero del jugador es invalido
+ */
     public Jugador getLiderPuntos() throws NumeroJugadorException{
         Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
         liderPuntos.setPuntosTot(0);
@@ -89,6 +121,11 @@ public class Torneo {
         }
         return liderPuntos; 
     }
+/**
+ * Metodo que permite obtener el jugador que mas asistencias ha repartido a lo largo del torneo
+ * @return Jugador lider en asistencias
+ * @throws NumeroJugadorException excepcion generada cuando el numero del jugador es invalido
+ */
     public Jugador getLiderAsistencias() throws NumeroJugadorException{
         Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
         liderPuntos.setAsistenciasTot(0);
@@ -101,6 +138,11 @@ public class Torneo {
         }
         return liderPuntos; 
     }
+/**
+ * Metodo que permite obtener el jugador con mejor porcentaje de conversion a lo largo del torneo
+ * @return Jugador lider en porcentaje de tiros de campo
+ * @throws NumeroJugadorException excepcion generada cuando el numero del jugador es invalido
+ */    
     public Jugador getLiderFG() throws NumeroJugadorException{
         Jugador liderPuntos= new Jugador("Dummy", "Dummy", 0, null);
         liderPuntos.setDoblesConvertidosTot(0);
